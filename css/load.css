@@ -1,0 +1,220 @@
+body
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+#formBody
+{
+	/*background-color: #daede6;*/
+	width: 250px;
+	border-radius: 5px;
+	display: flex;
+	flex-direction : column;
+	justify-content: center;
+}
+
+#loggedNavbar
+{
+	background-color: #f2f2f2;
+	width: 100%;
+	height: 60px;
+	display: flex;
+	align-items: center;
+}
+
+#loggedUI
+{
+	width: 100%;
+	height: auto;
+	flex-direction: column;
+}
+
+#holder
+{
+	width :100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#loggedForm
+{
+	display: flex;
+	flex-direction: column;
+	max-width: 500px;
+	min-width: 400px;
+	width: 50%;
+	border-left: 1px solid black;
+	border-left: 1px solid black;
+	height: auto;
+	margin-left: 20px;
+}
+
+#loggedContent
+{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	margin-top: 10px;
+}
+
+#loggedFormPassage
+{
+	max-width: calc(100% - 14px);
+	min-height: 400px;
+}
+
+#loggedDisplay
+{
+	width: calc(100% - 27px);
+	height: auto;
+	padding: 10px;
+	margin-right:20px;
+	margin-left: 7px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+#blackborder
+{
+	background-color: black;
+	opacity: .95;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	z-index: 10;
+}
+
+#content
+{
+	width: 500px;
+	height: calc(100% - 40px);
+	background-color: white;
+	font-family: 'Spartan';
+	font-size: 15px;
+	padding: 10px;
+}
+
+.form
+{
+	width: auto;
+	height: 40px;
+	border: 1px solid black;
+	margin: 7px;
+	padding-left: 10px;
+	font-size: 15px;
+	font-family: 'Spartan';
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+}
+
+.button
+{
+	color: white;
+	background-color: #4e9ac7;
+	border: 1px solid black;
+	height: 40px;
+	display: flex;
+	margin: 7px;
+	border-radius: 10px;
+	font-size: 15px;
+	font-family: 'Spartan';
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100px;
+}
+
+.button:hover
+{
+	cursor: pointer;
+}
+
+.title
+{
+	font-size: 35px;
+	font-family: 'Oxanium';
+	margin-left: 10px;
+}
+
+.passage
+{
+	margin-left: 7px;
+	margin-right: 7px;
+	border: 1px solid black;
+	font-family: 'Spartan';
+	font-size: 15px;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.imageInput
+{
+	margin: 7px 0px 7px 7px;
+	padding: 10px;
+	background-color: #4e9ac7;
+	color: white;
+	border-radius: 10px;
+	font-family: 'Spartan';
+}
+
+.imageInput:hover
+{
+	cursor: pointer;
+}
+
+.icon
+{
+	margin: 5px;
+	background-size: cover;
+	background-position: center;
+	height: 250px; 
+	width: 175px;
+	background-repeat: no-repeat;
+	opacity: .95;
+	display: flex;
+	align-items: center;
+}
+
+.icon:hover
+{
+	cursor: pointer;
+}
+
+.iconTitle
+{
+	font-family: 'Oxanium';
+	color: white;
+	font-size: 20px;
+	width: 100%;
+	padding: 5px;
+	background-color: white;
+	color: black;
+	text-align: center;
+	opacity: .9;
+	border-bottom: 1px solid black;
+}
+
+.iconPassage
+{
+	background-color: red;
+	height: calc(250px - 10px);
+	margin-top: 5px;
+	padding: 5px;
+	overflow: wrap;
+	width: 100%;
+}
+
+.itemHolder
+{
+	display: flex;
+	flex-direction: row;
+	width: auto;
+}

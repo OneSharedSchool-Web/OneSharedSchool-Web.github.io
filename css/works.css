@@ -1,0 +1,28 @@
+
+#staggered-wrapper {
+    display: flex;
+    width: 85%;
+    margin: 3rem auto;
+}
+
+
+.staggeredG {
+    position: relative;
+    width: 30%;
+    padding: 10px 15px;
+    margin: 0 15px;
+    display: inline-block;
+    color: white;
+    background: #578edb;
+    font-family: Raleway;
+}
+
+.staggeredOffset {
+    color: #578edb;
+    background: white;
+    border: 2px solid #578edb;
+}
+
+.staggered-title {
+    font-family: 'Montserrat', sans-serif;
+}

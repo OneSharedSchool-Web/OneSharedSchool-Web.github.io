@@ -1,0 +1,35 @@
+
+.flexrow {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.team-card {
+    width: 450px;
+    margin: 0 8vw;
+}
+
+.team-card > h4 {
+    font-family: 'Montserrat', sans-serif;
+}
+.team-card > p {
+    font-family: Raleway;
+}
+
+.team-odd {
+    background-color: blue;
+    color: white;
+}
+
+.team-even {
+    background: #a1c8ff;
+    color:blue;
+}
+
+.bgBlue {
+    background: #85b8ff;
+    padding: 1.5rem;
+}
+

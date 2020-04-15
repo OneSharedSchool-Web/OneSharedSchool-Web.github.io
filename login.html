@@ -1,0 +1,87 @@
+<html>
+
+	<head>
+	
+		<link href="https://fonts.googleapis.com/css?family=Oxanium|Spartan&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/load.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	</head>
+	<body onload = "update()">
+		
+		<!--black border-->
+		<div id = "blackborder" onclick = "hide()">
+			<div id = "content"></div>
+		</div>
+		<!-- login -->
+		<div id = "holder">
+			<div id = "formBody">
+			
+				<span class = "title" id = "title">Login</span>
+				<input id = "email" placeholder = "email" class = "form"></input>
+				<input id = "password" placeholder = "password" type = "password" class = "form"></input>
+				<button id = "submit" onclick = "login()" class = "button">Login</button>
+				
+			</div>
+		</div>
+		<!--body-->
+		<!--navbar-->
+		<div id = "loggedUI">
+		
+			<div id = "loggedNavbar">
+				<button class = "button" onclick = "logout()" style = "border: none; background-color: #d98c8c;">Log Out</button>
+			</div>
+			
+			<div id = "loggedContent">
+				
+				<div id = "loggedForm">
+					<input type="text" id = "loggedFormTitle" placeholder = "title" class = "form"></input>
+					<textarea id = "loggedFormPassage" class = "passage" placeholder = "passage"></textarea>
+					<input type="file" id="loggedImage" name="loggedImage" accept="image/*"  style = "display: none"/>
+					
+					<div style = "display: flex; flex-direction: row; align-items: center;">
+					
+						<label for="loggedImage" class = "imageInput">Choose an Image</label>
+						
+						<button class = "button" style = "border: none;" onclick = "articleSubmit()">Submit</button>
+						
+					</div>
+					
+				</div>
+				
+				<div id = "loggedDisplay" style = "border-right: 1px solid black;">
+					
+					
+				</div>
+				
+			</div>
+			
+			
+		</div>
+		
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+			 https://firebase.google.com/docs/web/setup#available-libraries -->
+		<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-analytics.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+		<script>
+		  // Your web app's Firebase configuration
+		  var firebaseConfig = {
+			apiKey: "AIzaSyDLEKi3M_5u7VhDsdn9xAN8_crE_EPMtNg",
+			authDomain: "fir-firebase-182ca.firebaseapp.com",
+			databaseURL: "https://fir-firebase-182ca.firebaseio.com",
+			projectId: "fir-firebase-182ca",
+			storageBucket: "fir-firebase-182ca.appspot.com",
+			messagingSenderId: "305332831669",
+			appId: "1:305332831669:web:76e94c6422371ebe0ac5fc",
+			measurementId: "G-LM5N57ZTJQ"
+		  };
+		  // Initialize Firebase
+		  firebase.initializeApp(firebaseConfig);
+		</script>
+		<script src="load.js"></script>
+		
+	</body>
+
+</html>
