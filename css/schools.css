@@ -1,0 +1,88 @@
+
+
+.school-stats > div {
+    font-size: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    margin: 1rem;
+}
+
+.school-card-wrapper {
+    padding: 1rem;
+}
+
+.school-card {
+    border: 1px solid black;
+    padding: 0.7rem;
+    background: #4c6bc9;
+    color:white;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 8px;
+}
+
+
+.school-card-info {
+    position: fixed;
+    display:none;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: #00000061;
+}
+
+.school-card-more:hover {
+    cursor: pointer;
+}
+
+.school-card-more {
+    text-decoration: underline;
+}
+
+.school-card-image {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 0.5rem;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: cover;
+}
+
+.card-content {
+    position: relative;
+    width: 75%;
+    height: 85%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #6a9ee6;
+    padding: 1.5rem 3rem;
+    color:white;
+    overflow-y: auto;
+    font-family: Raleway;
+}
+
+
+.card-content > .school-card-image {
+    width: 50%;
+    background-position: center;
+    margin: 0 auto 1rem;
+}
+
+.content-map-wrapper {
+    height: 500px;
+    width: 80%;
+    margin: 2rem auto;
+}
+
+#content-name {
+    font-family: 'Montserrat', sans-serif;
+}
+
+#school-card-info:hover {
+    cursor: pointer;
+}
+
+.card-content:hover {
+    cursor: default;
+}
+
+

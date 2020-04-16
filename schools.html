@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/schools.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light"  style="background-color: white !important;" id="navbar">
@@ -44,8 +45,102 @@
 
 </nav>
 
+
+<div class="title blueS mt-3">
+    Schools
+</div>
+
+<h2 class="text-center mt-5 blueS">Our Stats</h2>
+<div class="boxWidth">
+    <div class="d-flex justify-content-center flex-row school-stats">
+        <div>
+            Target: €17,350
+        </div>
+        <div>
+            Raised: €650
+        </div>
+        <div>
+            Total Schools: 73
+        </div>
+        <div>
+            Children: 11,000
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-5">
+    <div class="row" id="school-list">
+        <div class="col-6 school-card-wrapper">
+            <div class="school-card">
+                <div class="school-card-image"></div>
+                <h3>School 1</h3>
+                <p>Raised: $1000 / $2000</p>
+                <p class="school-card-more">More</p>
+            </div>
+        </div>
+        <div class="col-6 school-card">
+            <h3>School 1</h3>
+            <p>Description</p>
+
+        </div>
+    </div>
+</div>
+
+<div class="school-card-info" id="school-card-info">
+    <div class="card-content">
+        <div class="school-card-image" id="content-image"></div>
+        <h3 id="content-name">School 1</h3>
+        <p id="content-raised">Raised: $1000 / $2000</p>
+        <p id="content-description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Netus et malesuada fames ac turpis egestas integer eget aliquet. Pulvinar proin gravida hendrerit lectus. Nam at lectus urna duis. At elementum eu facilisis sed odio morbi. Tristique nulla aliquet enim tortor at auctor. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus. Sit amet consectetur adipiscing elit ut aliquam. Eu consequat ac felis donec et odio pellentesque diam. Augue mauris augue neque gravida. Tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Elit eget gravida cum sociis natoque penatibus."</p>
+        <p class="mb-0">Items Needed</p>
+        <ul id="content-items-list">
+            <li>Paint</li>
+            <li>Ball</li>
+        </ul>
+
+        <div class="content-map-wrapper" id="content-map">
+        </div>
+
+    </div>
+</div>
+
+<div class="footer">
+    <h6>Made with ❤️and ☕ by Tinovation</h6>
+    <h6>Copyright © 2018 One Family. All rights reserved</h6>
+</div>
+
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-database.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyDJGfM_eHfx1tZUmm-U16hYZqgVk9_G4U8",
+        authDomain: "android1920-2a174.firebaseapp.com",
+        databaseURL: "https://android1920-2a174.firebaseio.com",
+        projectId: "android1920-2a174",
+        storageBucket: "android1920-2a174.appspot.com",
+        messagingSenderId: "333537459957",
+        appId: "1:333537459957:web:7acef69d4a5556ff904fbc",
+        measurementId: "G-WS3NNCE8SK"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJGfM_eHfx1tZUmm-U16hYZqgVk9_G4U8"
+        async defer></script>
+
+<script src="js/schools.js"></script>
 
 </body>
 </html>
