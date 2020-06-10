@@ -85,4 +85,66 @@
     cursor: default;
 }
 
+#schoolContainer
+{
+	padding: 20px;
+	display: grid;
+	grid-template-rows: auto;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 10px;
+}
 
+.schoolCard
+{
+	width: 100%;
+	height: 300px;
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.schoolInfo
+{
+	display: flex;
+	width: 300px;
+	background-color: white;
+	opacity: .9;
+	height: 100%;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px;
+}
+
+.schoolTitle
+{
+	display: flex;
+	justify-content: center;
+    font-size: 1.2rem;
+    font-family: 'Montserrat', sans-serif;
+	color: #578edb;
+}
+
+.schoolDescription
+{
+	display: flex;
+	margin-top: 10px;
+	justify-content: center;
+    font-size: 1rem;
+    font-family: 'Raleway', sans-serif;
+}
+
+.schoolMoney
+{
+	display: flex;
+	margin-top: 10px;
+	justify-content: center;
+    font-size: 1rem;
+    font-family: 'Raleway', sans-serif;
+}
+
+@media only screen and (max-width: 800px) {
+  #schoolContainer {
+	grid-template-columns: 1fr;
+  }
+}
