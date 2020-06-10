@@ -5,10 +5,9 @@ $(document).ready(function () {
         .ref("SchoolCodes")
         .once('value')
         .then((snapshot) => { 
-            console.log("snap " + snapshot.value)
+            console.log("snap " + snapshot.val())
             snapshot.forEach(function(snap) {
-
-                console.log("inner: " + snap.value()) 
+                console.log("inner: " + snap.val()) 
             })
             
         });
