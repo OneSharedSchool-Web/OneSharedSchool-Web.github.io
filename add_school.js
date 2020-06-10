@@ -1,16 +1,7 @@
 $(document).ready(function () {
 
-
-    firebase.database()
-        .ref("SchoolCodes")
-        .once('value')
-        .then((snapshot) => { 
-            console.log("snap " + snapshot.val())
-            snapshot.forEach(function(snap) {
-                console.log("inner: " + snap.val()) 
-            })
-            
-        });
+	var ref = firebase.database().ref('SchoolCodes');
+	ref.once('value', gotData,errData);
 
 
     $("#add_school_button_submit").click(function (e) {
@@ -25,3 +16,23 @@ $(document).ready(function () {
 
 
 });
+
+function gotData(data)
+{
+	console.log(data);
+	var articleObj = data.val();
+	console.log(articleObj);
+	if(articleObj != null)
+	{
+		var keys = Object.keys(articleObj);
+		for(var i = 0; i < keys.length; i++)
+		{
+			console.log(keys[i]);
+		}
+	}
+}
+
+function errData(data)
+{
+	console.log(data);
+}
