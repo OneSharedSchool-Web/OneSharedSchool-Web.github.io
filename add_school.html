@@ -1,0 +1,131 @@
+<html>
+	
+	<head>
+	
+		<link href="https://fonts.googleapis.com/css?family=Oxanium|Spartan&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="css/admin.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="css/dashboard.css">
+		<link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/add_school.css">
+	</head>
+	
+	<body>
+	
+		<nav class="navbar navbar-expand-lg navbar-light bg-light"  style="background-color: white !important;font-family: 'Montserrat', sans-serif;" id="navbar">
+			<span class="navbar-brand mb-0 h1" style="color:#578edb !important;">
+			  <img src="img/logo.png" width="150" height="40" class="d-inline-block align-top" alt="logo">
+			</span>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			  <ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+				  <a class="nav-link" href="index.html">Home</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="schools.html">Schools</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="works.html">How does it work?</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="news.html">News</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="about.html">About</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="contact.html">Contact</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="admin.html">Admin</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="dashboard.html">DashBoard</a>
+				</li>
+			  </ul>
+			</div>
+		</nav>
+		
+		<!-- login -->
+
+		<!-- sign up -->
+        <div class="container">
+            <h3>Administrative Portal to Add Schools</h3>
+            <form>
+                <div class="row">
+                    
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1" style="display: inline-block;">Full name</label>
+
+                    <div class="d-flex flex-row">
+                      <input type="text" class="mx-3 form-control" placeholder="First name">
+                      <input type="text" class="mx-3 form-control" placeholder="Last name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">School Email address</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">School Name</label>
+                    <input type="text" class="form-control" id="schoolInput" placeholder="Cupertino High School">
+                </div>
+                
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Provide any other information we need to help us verify your identity</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">Drivers License / Passport / Other official document with photo</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlFile1">School issued identification card</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                  </div>
+                  <button id="add_school_button_submit" type="button" class="btn btn-primary">Submit for Verification</button>
+              </form>
+        </div>
+       
+		
+		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+			 https://firebase.google.com/docs/web/setup#available-libraries -->
+		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+		
+        <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-firestore.js"></script>
+
+
+		<script>
+
+		  // Your web app's Firebase configuration
+		  var firebaseConfig = {
+			apiKey: "AIzaSyATSvyHCqTENJ0LhV654hCkl5e5k2K2CFE",
+			authDomain: "usersoss.firebaseapp.com",
+			databaseURL: "https://usersoss.firebaseio.com",
+			projectId: "usersoss",
+			storageBucket: "usersoss.appspot.com",
+			messagingSenderId: "257121220564",
+			appId: "1:257121220564:web:c1dbd7ec36ec2f47354841",
+			measurementId: "G-5SR971959R"
+		  };
+		  // Initialize Firebase
+		  firebase.initializeApp(firebaseConfig);
+        </script>
+        
+        <script src="add_school.js"></script>
+
+		
+	</body>
+</html>
