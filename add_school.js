@@ -21,10 +21,10 @@ $(document).ready(function () {
 
         //school post entry
         var schoolData = {
-            name: schoolName,
-            description: description,
-            imageUri: imageURI,
-            items: donationsUsedFor,
+            name: "Carneggie Mellon U",
+            description: "we are in CMU",
+            imageUri: "https://www.cmu.edu/assets/images/site/meta-image-cmu.jpg",
+            items: "====",
             organizerID: organizerID
             //TODO add all the other fields here
         }
@@ -58,26 +58,33 @@ $(document).ready(function () {
                     console.log("New school will be inserted here", newIndex)
 
                     var updates = {};
+                    
+                    schoolData["schoolCode"] = schoolCode;
+                    schoolData["schoolIndex"] = newIndex;
 
-                    updates['/Schools/' + newIndex] = schoolData;
-                    updates['/SchoolCodes/' + schoolCode] = newIndex;
+                    updates['/ProposedSchools/' + organizerID] = schoolData;
                     return firebase.database().ref().update(updates);
-
                 }, null)
                 
-                const selectedDriversLicense = document.getElementById('driversLicense').files[0];
-                console.log("Selected file", selectedDriversLicense.name)
-                var ext = selectedDriversLicense.name.split(".")[1]
-                var driverRef = firebase.storage().ref().child("AdminsToBeValidated/Drivers_" + organizerID + "." + ext);
-                driverRef.put(selectedDriversLicense).then(function(snapshot) {
-                    console.log("Uploaded file successfully! :)")
-                })
-                
-                const selectedSchoolId = document.getElementById("schoolIDcard").files[0];
-                
-                
-
-        
+                try {
+                    const selectedDriversLicense = document.getElementById('driversLicense').files[0];
+                    console.log("Selected file", selectedDriversLicense.name)
+                    var ext = selectedDriversLicense.name.split(".")[1]
+                    var driverRef = firebase.storage().ref().child("AdminsToBeValidated/Drivers_" + organizerID + "." + ext);
+                    driverRef.put(selectedDriversLicense).then(function(snapshot) {
+                        console.log("Uploaded file successfully! :)")
+                    })
+                    
+                    const selectedSchoolId = document.getElementById("schoolIDcard").files[0];
+                    ext = selectedDriversLicense.name.split(".")[1]
+                    var schoolIDref = firebase.storage().ref().child("AdminsToBeValidated/School_" + organizerID + "." + ext);
+                    schoolIDref.put(selectedSchoolId).then(function(snapshot) {
+                        console.log("Uploaded file successfully! :)")
+                    })
+                } catch(e) {
+                    console.log(e)
+                }
+               
             }
         },errData);
 
