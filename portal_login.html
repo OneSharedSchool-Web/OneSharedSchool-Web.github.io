@@ -1,0 +1,126 @@
+<html>
+
+<head>
+
+    <link href="https://fonts.googleapis.com/css?family=Oxanium|Spartan&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/add_school.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"
+        style="background-color: white !important;font-family: 'Montserrat', sans-serif;" id="navbar">
+        <span class="navbar-brand mb-0 h1" style="color:#578edb !important;">
+            <img src="img/logo.png" width="150" height="40" class="d-inline-block align-top" alt="logo">
+        </span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="schools.html">Schools</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="works.html">How does it work?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="news.html">News</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin.html">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard.html">DashBoard</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- login -->
+
+    <!-- sign up -->
+    <div class="container">
+        <div class="d-flex flex-column justify-content-center align-items-center pt-4" >
+            <h3>Principle/School Administrator Login & Signup</h3>
+
+            <div class="d-flex flex-row justify-content-start align-items-center">
+                <div class="form-check mx-3">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="loginRadio" value="option1"
+                        checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                        Login
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="createUserRadio"
+                        value="option2">
+                    <label class="form-check-label" for="exampleRadios2">
+                        Create New User
+                    </label>
+                </div>
+
+            </div>
+
+
+            <div id="formBody" class="pt-3">
+                <span class="titleLoginText" id="title">Login</span>
+                <input id="email" placeholder="email" class="form"></input>
+                <input id="password" placeholder="password" type="password" class="form"></input>
+                <button id="submit" onclick="clickTheSubmitButton()" class="button">Login</button>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+			 https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-firestore.js"></script>
+
+
+    <script>
+
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDJGfM_eHfx1tZUmm-U16hYZqgVk9_G4U8",
+            authDomain: "android1920-2a174.firebaseapp.com",
+            databaseURL: "https://android1920-2a174.firebaseio.com",
+            projectId: "android1920-2a174",
+            storageBucket: "android1920-2a174.appspot.com",
+            messagingSenderId: "333537459957",
+            appId: "1:333537459957:web:7acef69d4a5556ff904fbc",
+            measurementId: "G-WS3NNCE8SK"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script src="portal_login.js"></script>
+
+
+</body>
+
+</html>

@@ -72,25 +72,46 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlInput1">School Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="schoolEmail" placeholder="name@example.com">
                 </div>
 
                 <div class="form-group">
                     <label for="exampleFormControlInput1">School Name</label>
-                    <input type="text" class="form-control" id="schoolInput" placeholder="Cupertino High School">
-                </div>
+                    <input type="text" class="form-control" id="schoolName" placeholder="Cupertino High School">
+				</div>
+				
+				<div class="form-group">
+                    <label for="exampleFormControlInput1">Provide a direct link to view a photo of your school</label>
+                    <input type="text" class="form-control" id="photoLink" placeholder="https://yourimage.png">
+				</div>
+
+				<div class="form-group">
+					<label for="exampleFormControlTextarea2">School Description</label>
+					<textarea class="form-control" id="schoolDescription" rows="3"></textarea>
+				</div>
+
+				<div class="form-group">
+					<label for="exampleFormControlTextarea2">What will donations be used for (items separated by commas)</label>
+					<textarea class="form-control" id="donationsUsedFor" rows="3"></textarea>
+				</div>
+
+				<div class="form-group">
+                    <label for="exampleFormControlInput1">Provide a direct link to your school's gofundme page</label>
+                    <input type="text" class="form-control" id="schoolInput" placeholder="www.gofundme.org">
+				</div>
+
                 
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1">Provide any other information we need to help us verify your identity</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  <textarea class="form-control" id="otherVerificationInfo" rows="3"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlFile1">Drivers License / Passport / Other official document with photo</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    <input type="file" class="form-control-file" id="driversLicense">
                   </div>
                   <div class="form-group">
                     <label for="exampleFormControlFile1">School issued identification card</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    <input type="file" class="form-control-file" id="schoolIDcard">
                   </div>
                   <button id="add_school_button_submit" type="button" class="btn btn-primary">Submit for Verification</button>
               </form>
