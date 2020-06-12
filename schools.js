@@ -49,7 +49,7 @@ function gotData(data)
 			schoolMoney.innerHTML = "$" + RM + " / " + "$" + TM;
 			
 			var schoolLink = document.createElement('a');
-			schoolLink.href =  fundLink;
+			schoolLink.href =  "https://" + fundLink;
 			schoolLink.innerHTML = "Click Here for Go Fund Me"
 			
 			schoolInfo.appendChild(schoolTitle);
