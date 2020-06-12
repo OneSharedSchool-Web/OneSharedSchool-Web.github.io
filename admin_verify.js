@@ -32,36 +32,42 @@ $(document).ready(function () {
             console.log("content", content)
             console.log(content)
 
-            var schoolName = "content[\"adminFirstName\"]";
+            var schoolName = content["name"];
             var adminFirstName = content["adminFirstName"];
             var adminLastName = content["adminLastName"];
             var schoolDescription = content["description"];
-            var schoolImageLink = content["imageURI"];
+            var schoolImageLink = content["imageUri"];
             var driversLicense = content["adminFirstName"];
             var schoolID = content["adminFirstName"];
             var otherVerificationInformation = content["otherVerificationInfo"];
-            var driversLicense = "https://s.hdnux.com/photos/70/31/77/14786535/8/920x920.jpg";
-            var schoolID = "https://www.idwholesaler.com/learning-center/wp-content/uploads/2018/03/student-school-id-card-1.png";
+            var driversLicense = "";
+            var schoolID = "";
             const driversLicenseExtension = content["selectedDriversLicense"].split(".")[1]
             const schoolIDExtension = content["selectedSchoolId"].split(".")[1]
             
-            var driverRef = storageRef.ref('/AdminsToBeValidated/Drivers_' + current_key + driversLicenseExtension)
-            var schoolIdRef = storageRef.ref('/AdminsToBeValidated/School_' + current_key + schoolIDExtension)
+            console.log("filename search", current_key + driversLicenseExtension)
+
+            var driverRef = storageRef.ref('/AdminsToBeValidated/Drivers_' + current_key + "." + driversLicenseExtension)
+            var schoolIdRef = storageRef.ref('/AdminsToBeValidated/School_' + current_key + "." + schoolIDExtension)
             
             driverRef.getDownloadURL().then(function(url) {
                 // Insert url into an <img> tag to "download"
                 console.log("Download url for driver's license is " + url)
 
-                schoolIdRef.getDownloadURL.then(function(url) {
+                driversLicense = url;
+
+                schoolIdRef.getDownloadURL().then(function(url) {
                     
                     console.log("Download url for school ID is " + url)
+                    schoolID = url;
 
+                    const card_to_inject = "<div class=\"shadow p-5\"><h4>" + schoolName + "</h4><div class=\"d-flex flex-row justify-content-center align-items-center p-3\"><div class=\"px-2\"><p>Admin:" + adminFirstName + " " + adminLastName + "</p><p>Description:" + schoolDescription + "</p><p>Items Needed: </p><ul><li>Hair</li><li>Clothing</li></ul></div><div class=\"px-2\"><img id=\"school_image\" src=\"" + schoolImageLink + "\"alt=\"School Image\"></div></div><h4>Admin Verification Information</h4><div class=\"d-flex flex-row justify-content-center align-items-center p-3\"><div class=\"p-3\"><h6>User Drivers License</h6><img id=\"drivers_license\" src=\"" + driversLicense + "\" alt=\"\"></div><div class=\"p-3\"><h6>School ID</h6><img id=\"school_id\"src=\"" + schoolID + "\"alt=\"\"></div></div><p>Other Verification Information:" + otherVerificationInformation + "</p><div class=\"d-flex flex-row justify-content-around align-items-center\" id=\"INSERT_USER_UID_HERE\"><div class=\"mr-3\"><p>approve</p><svg class=\"bi bi-check2\" width=\"5vw\" height=\"5vw\" viewBox=\"0 0 16 16\" fill=\"currentColor\"xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\"d=\"M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z\" /></svg></div><div><p>reject</p><svg class=\"bi bi-x\" width=\"5vw\" height=\"5vw\" viewBox=\"0 0 16 16\" fill=\"currentColor\"xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\"d=\"M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z\" /><path fill-rule=\"evenodd\"d=\"M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z\" /></svg></div></div></div>"
+                    $("#proposed_school_list").append(card_to_inject)
                 })
 
             })
 
-            const card_to_inject = "<div class=\"shadow p-5\"><h4>" + schoolName + "</h4><div class=\"d-flex flex-row justify-content-center align-items-center p-3\"><div class=\"px-2\"><p>Admin:" + adminFirstName + " " + adminLastName + "</p><p>Description:" + schoolDescription + "</p><p>Items Needed: </p><ul><li>Hair</li><li>Clothing</li></ul></div><div class=\"px-2\"><img id=\"school_image\" src=\"" + schoolImageLink + "\"alt=\"School Image\"></div></div><h4>Admin Verification Information</h4><div class=\"d-flex flex-row justify-content-center align-items-center p-3\"><div class=\"p-3\"><h6>User Drivers License</h6><img id=\"drivers_license\" src=\"" + driversLicense + "\" alt=\"\"></div><div class=\"p-3\"><h6>School ID</h6><img id=\"school_id\"src=\"" + schoolID + "\"alt=\"\"></div></div><p>Other Verification Information:" + otherVerificationInformation + "</p><div class=\"d-flex flex-row justify-content-around align-items-center\" id=\"INSERT_USER_UID_HERE\"><div class=\"mr-3\"><p>approve</p><svg class=\"bi bi-check2\" width=\"5vw\" height=\"5vw\" viewBox=\"0 0 16 16\" fill=\"currentColor\"xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\"d=\"M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z\" /></svg></div><div><p>reject</p><svg class=\"bi bi-x\" width=\"5vw\" height=\"5vw\" viewBox=\"0 0 16 16\" fill=\"currentColor\"xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\"d=\"M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z\" /><path fill-rule=\"evenodd\"d=\"M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z\" /></svg></div></div></div>"
-            $("#proposed_school_list").append(card_to_inject)
+            
         }
 
     }, null)
