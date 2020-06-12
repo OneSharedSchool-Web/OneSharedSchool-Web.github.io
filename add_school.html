@@ -21,34 +21,42 @@
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			  </button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			  <ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-				  <a class="nav-link" href="index.html">Home</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="schools.html">Schools</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="works.html">How does it work?</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="news.html">News</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="about.html">About</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="contact.html">Contact</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="admin.html">Admin</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="dashboard.html">DashBoard</a>
-				</li>
-			  </ul>
-			</div>
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+				  <li class="nav-item active">
+					<a class="nav-link" href="index.html">Home</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="schools.html">Schools</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="works.html">How does it work?</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="news.html">News</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="about.html">About</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="contact.html">Contact</a>
+				  </li>
+				  <!-- <li class="nav-item">
+					<a class="nav-link" href="admin.html">Admin</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="dashboard.html">DashBoard</a>
+				  </li> -->
+				  <li class="nav-item">
+							<a class="nav-link" href="portal_login.html">Portal Login</a>
+				  </li>
+				  
+				  <li>
+					<a class="nav-link" href="admin_verify.html">Admin Verify</a>
+				  </li>
+		  
+				</ul>
+			  </div>
 		</nav>
 		
 		<!-- login -->
@@ -65,8 +73,8 @@
                     <label for="exampleFormControlInput1" style="display: inline-block;">Full name</label>
 
                     <div class="d-flex flex-row">
-                      <input type="text" class="mx-3 form-control" placeholder="First name">
-                      <input type="text" class="mx-3 form-control" placeholder="Last name">
+                      <input type="text"  id="firstName" class="mx-3 form-control" placeholder="First name">
+                      <input type="text" id="lastName" class="mx-3 form-control" placeholder="Last name">
                     </div>
                 </div>
 
@@ -97,7 +105,7 @@
 
 				<div class="form-group">
                     <label for="exampleFormControlInput1">Provide a direct link to your school's gofundme page</label>
-                    <input type="text" class="form-control" id="schoolInput" placeholder="www.gofundme.org">
+                    <input type="text" class="form-control" id="gofundme" placeholder="www.gofundme.org">
 				</div>
 
                 

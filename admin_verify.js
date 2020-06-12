@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("#proposed_school_list").append("<div class=\"shadow\"><h6>Adding this card</h6></div>")
+    // $("#proposed_school_list").append("<div class=\"shadow\"><h6>Adding this card</h6></div>")
 
     var ref = firebase.database().ref('ProposedSchools');
 

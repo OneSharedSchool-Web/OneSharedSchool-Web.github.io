@@ -1,96 +1,176 @@
 <html>
-	
-	<head>
-	
-		<link href="https://fonts.googleapis.com/css?family=Oxanium|Spartan&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" href="css/admin.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<link rel="stylesheet" href="css/dashboard.css">
-		<link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/add_school.css">
-	</head>
-	
-	<body>
-	
-		<nav class="navbar navbar-expand-lg navbar-light bg-light"  style="background-color: white !important;font-family: 'Montserrat', sans-serif;" id="navbar">
-			<span class="navbar-brand mb-0 h1" style="color:#578edb !important;">
-			  <img src="img/logo.png" width="150" height="40" class="d-inline-block align-top" alt="logo">
-			</span>
-			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			  </button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			  <ul class="navbar-nav mr-auto">
+
+<head>
+
+	<link href="https://fonts.googleapis.com/css?family=Oxanium|Spartan&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/admin.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/admin_verify.css">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light"
+		style="background-color: white !important;font-family: 'Montserrat', sans-serif;" id="navbar">
+		<span class="navbar-brand mb-0 h1" style="color:#578edb !important;">
+			<img src="img/logo.png" width="150" height="40" class="d-inline-block align-top" alt="logo">
+		</span>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-				  <a class="nav-link" href="index.html">Home</a>
+					<a class="nav-link" href="index.html">Home</a>
 				</li>
 				<li class="nav-item">
-				  <a class="nav-link" href="schools.html">Schools</a>
+					<a class="nav-link" href="schools.html">Schools</a>
 				</li>
 				<li class="nav-item">
-				  <a class="nav-link" href="works.html">How does it work?</a>
+					<a class="nav-link" href="works.html">How does it work?</a>
 				</li>
 				<li class="nav-item">
-				  <a class="nav-link" href="news.html">News</a>
+					<a class="nav-link" href="news.html">News</a>
 				</li>
 				<li class="nav-item">
-				  <a class="nav-link" href="about.html">About</a>
+					<a class="nav-link" href="about.html">About</a>
 				</li>
 				<li class="nav-item">
-				  <a class="nav-link" href="contact.html">Contact</a>
+					<a class="nav-link" href="contact.html">Contact</a>
 				</li>
+				<!-- <li class="nav-item">
+					<a class="nav-link" href="admin.html">Admin</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="dashboard.html">DashBoard</a>
+				  </li> -->
 				<li class="nav-item">
-				  <a class="nav-link" href="admin.html">Admin</a>
+					<a class="nav-link" href="portal_login.html">Portal Login</a>
 				</li>
+
 				<li class="nav-item">
-				  <a class="nav-link" href="dashboard.html">DashBoard</a>
+					<a class="nav-link" href="admin_verify.html">Admin Verify</a>
 				</li>
-			  </ul>
+
+			</ul>
+		</div>
+	</nav>
+
+	<!-- login -->
+
+	<!-- sign up -->
+	<div class="container">
+		<h3>Approve the list of proposed schools here</h3>
+		<div id="proposed_school_list" class="d-flex flex-column justify-content-start align-items-left p-3 m-3">
+
+			<div class="shadow p-5">
+				<h4>Cupertino High School</h4>
+
+				<div class="d-flex flex-row justify-content-center align-items-center p-3">
+
+					<div class="px-2">
+
+						<p>Admin: Kami Tomberlain</p>
+						<p>Description: Kami Tomberlain</p>
+						<p>Items Needed: </p>
+						<ul>
+							<li>Hair</li>
+							<li>Clothing</li>
+						</ul>
+
+
+					</div>
+
+					<div class="px-2">
+						<img id="school_image" src="https://www.fuhsd.org/cf_cloudflare/01/data/media/mobile/557.jpg"
+							alt="School Image">
+					</div>
+				</div>
+
+				<h4>Admin Verification Information</h4>
+
+				<div class="d-flex flex-row justify-content-center align-items-center p-3">
+					<div class="p-3">
+						<h6>User Drivers License</h6>
+						<img id="drivers_license"
+							src="https://st3.depositphotos.com/4111759/13425/v/450/depositphotos_134255626-stock-illustration-avatar-male-profile-gray-person.jpg"
+							alt="">
+					</div>
+
+					<div class="p-3">
+						<h6>School ID</h6>
+						<img id="school_id"
+							src="https://st3.depositphotos.com/4111759/13425/v/450/depositphotos_134255626-stock-illustration-avatar-male-profile-gray-person.jpg"
+							alt="">
+					</div>
+				</div>
+
+				<div class="d-flex flex-row justify-content-around align-items-center ">
+					<div class="mr-3">
+						<p>approve</p>
+						<svg class="bi bi-check2" width="5vw" height="5vw" viewBox="0 0 16 16" fill="currentColor"
+							xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd"
+								d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+						</svg>
+					</div>
+
+					<div>
+						<p>reject</p>
+						<svg class="bi bi-x" width="5vw" height="5vw" viewBox="0 0 16 16" fill="currentColor"
+							xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd"
+								d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z" />
+							<path fill-rule="evenodd"
+								d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z" />
+						</svg>
+					</div>
+
+
+				</div>
+
 			</div>
-		</nav>
-		
-		<!-- login -->
 
-		<!-- sign up -->
-        <div class="container">
-            <h3>Approve the list of proposed schools here</h3>
-            <div id="proposed_school_list" class="d-flex flex-column justify-content-start align-items-center">
-                
-            </div>
-        </div>
-       
-		
-		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
 
-		<!-- TODO: Add SDKs for Firebase products that you want to use
+
+		</div>
+	</div>
+
+
+	<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
 			 https://firebase.google.com/docs/web/setup#available-libraries -->
-		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-		
-        <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-firestore.js"></script>
 
 
-		<script>
+	<script>
 
-		  // Your web app's Firebase configuration
-		  var firebaseConfig = {
-        apiKey: "AIzaSyDJGfM_eHfx1tZUmm-U16hYZqgVk9_G4U8",
-        authDomain: "android1920-2a174.firebaseapp.com",
-        databaseURL: "https://android1920-2a174.firebaseio.com",
-        projectId: "android1920-2a174",
-        storageBucket: "android1920-2a174.appspot.com",
-        messagingSenderId: "333537459957",
-        appId: "1:333537459957:web:7acef69d4a5556ff904fbc",
-        measurementId: "G-WS3NNCE8SK"
-    };
-		  // Initialize Firebase
-		  firebase.initializeApp(firebaseConfig);
-        </script>
-        
-        <script src="admin_verify.js"></script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyDJGfM_eHfx1tZUmm-U16hYZqgVk9_G4U8",
+			authDomain: "android1920-2a174.firebaseapp.com",
+			databaseURL: "https://android1920-2a174.firebaseio.com",
+			projectId: "android1920-2a174",
+			storageBucket: "android1920-2a174.appspot.com",
+			messagingSenderId: "333537459957",
+			appId: "1:333537459957:web:7acef69d4a5556ff904fbc",
+			measurementId: "G-WS3NNCE8SK"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+	</script>
 
-		
-	</body>
+	<script src="admin_verify.js"></script>
+
+
+</body>
+
 </html>
