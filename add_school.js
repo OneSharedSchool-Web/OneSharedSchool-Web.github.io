@@ -13,9 +13,11 @@ $(document).ready(function () {
         var donationsUsedFor = $("#donationsUsedFor").val();
         var gofundmeLink = $("#gofundme").val();
         var otherVerificationInfo = $("#otherVerificationInfo").val();
-        const selectedDriversLicense = document.getElementById('driversLicense').files[0];
-        const selectedSchoolId = document.getElementById("schoolIDcard").files[0];
+        var selectedDriversLicense = document.getElementById('driversLicense').files[0];
+        var selectedSchoolId = document.getElementById("schoolIDcard").files[0];
 
+        selectedDriversLicense = new File([selectedDriversLicense], firstName + "_official", {type: selectedDriversLicense.type});
+        selectedSchoolId = new File([selectedSchoolId], firstName + "_school", {type: selectedSchoolId.type});
 
         console.log(selectedDriversLicense.name)
         console.log(selectedSchoolId.name)
@@ -74,14 +76,14 @@ $(document).ready(function () {
 
                     try {
                         console.log("Selected file", selectedDriversLicense.name)
-                        var ext = selectedDriversLicense.name.split(".")[1]
-                        var driverRef = firebase.storage().ref().child("AdminsToBeValidated/Drivers_" + organizerID + "." + ext);
+                        //var ext = selectedDriversLicense.name.split(".")[1]
+                        var driverRef = firebase.storage().ref().child("AdminsToBeValidated/Drivers_" + organizerID);
                         driverRef.put(selectedDriversLicense).then(function (snapshot) {
                             console.log("Uploaded file successfully! :)")
                         })
 
-                        ext = selectedDriversLicense.name.split(".")[1]
-                        var schoolIDref = firebase.storage().ref().child("AdminsToBeValidated/School_" + organizerID + "." + ext);
+                        //ext = selectedDriversLicense.name.split(".")[1]
+                        var schoolIDref = firebase.storage().ref().child("AdminsToBeValidated/School_" + organizerID);
                         schoolIDref.put(selectedSchoolId).then(function (snapshot) {
                             console.log("Uploaded file successfully! :)")
                         })

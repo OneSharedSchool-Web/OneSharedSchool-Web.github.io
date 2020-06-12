@@ -7,22 +7,9 @@
     max-height: 50%;
 }
 
-body {
-    background-color: red;
-}
-
-#reject_div {
-    background-color: navy;
-}
-
-#check_div {
-    background-color: navy;
-
-}
-
 #reject_div:hover {
-    background-color: red;
+    background-color: oldlace;
 }
 #check_div:hover {
-    background-color: red;
+    background-color: oldlace;
 }
