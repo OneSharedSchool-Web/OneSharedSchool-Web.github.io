@@ -16,13 +16,14 @@ $(document).ready(function () {
         const selectedDriversLicense = document.getElementById('driversLicense').files[0];
         const selectedSchoolId = document.getElementById("schoolIDcard").files[0];
 
-        console.log(selectedDriversLicense)
+        console.log(selectedDriversLicense.name)
         if (!(firstName && lastName && schoolEmail && schoolName && photoLink &&
             schoolDescription && donationsUsedFor && gofundmeLink && selectedDriversLicense
             && selectedSchoolId)) {
             alert("Please fill out all fields and try again")
             return
         }
+
 
         var organizerID = firebase.auth().currentUser.uid;
 
@@ -35,7 +36,9 @@ $(document).ready(function () {
             description: schoolDescription,
             imageUri: photoLink,
             items: donationsUsedFor.split(","),
-            organizerID: organizerID
+            organizerID: organizerID,
+            selectedDriversLicense: selectedDriversLicense,
+            selectedSchoolId: selectedSchoolId
             //TODO add all the other fields here
         }
 
