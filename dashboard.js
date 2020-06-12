@@ -61,7 +61,7 @@ function gotData(data)
 	}
 	else
 	{
-		document.getElementById("loggedDisplay").innerHTML = "No Comments Posted";
+		document.getElementById("comments").innerHTML = "No Comments Posted";
 	}
 }
 function errData(err)
