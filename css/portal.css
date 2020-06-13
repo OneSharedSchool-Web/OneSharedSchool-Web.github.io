@@ -1,0 +1,61 @@
+body
+{
+	padding: 0px;
+	margin: 0px;
+}
+
+#flexContainer
+{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#innerContainer
+{
+	min-width: 400px;
+	height: 500px;
+	display: flex;
+	flex-direction: column;
+}
+
+.miniTitle
+{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
+    color: #578edb;
+	font-size: 1.5rem;
+	width: 100%;
+}
+
+.title
+{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
+    color: #578edb;
+	font-size: 3rem;
+	width: 100%;
+
+}
+
+#dif
+{
+	display: none;
+	flex-direction: column;
+}
+
+#formSub
+{
+	width: 80px;
+	height: 40px;
+	margin-top: 10px;
+}
+
+.form
+{
+	width: 80%;
+	height: 40px;
+	margin-top: 10px;
+}
