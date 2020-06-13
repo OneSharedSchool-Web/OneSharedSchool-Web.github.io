@@ -1,0 +1,69 @@
+<html>
+
+	<head>
+		<link rel="stylesheet" href="css/portal.css">
+		<link href="https://fonts.googleapis.com/css?family=Oxanium|Spartan&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	</head>
+	
+	<body>
+	
+		<div id = "flexContainer"> 
+			<div id = "innerContainer">
+			
+				<div class = "title" style = "margin-bottom: 10px">Login / SignUp</div>
+				
+				<form action="/action_page.php">
+					<span class = "miniTitle">Portal Type: </span>
+					<input type="radio" id="male" name="gender" value="male" onclick = "portalTypeLogin()">
+					<label for="male">Login</label>
+					<input type="radio" id="female" name="gender" value="female" onclick = "portalTypeSignUp()">
+					<label for="female">SignUp</label>
+
+					<br>  
+					
+					<div id = "accountType" style = "display: none;">
+						<span class = "miniTitle">Account Type: </span>
+						<input type="radio" id="age1" name="age" value="30" onclick = "principal()">
+						<label for="age1">Principal</label>
+						<input type="radio" id="age2" name="age" value="60" onclick = "student()">
+						<label for="age2">Student</label>
+					</div>
+				</form>
+				
+				<div id = "dif">
+					<input id="email" placeholder="email" class="form"></input>
+					<input id="password" placeholder="password" type="password" class="form"></input>
+					<button id = "formSub" onclick = "submit()"></button>
+				</div>
+				
+			</div>
+		</div>
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+			 https://firebase.google.com/docs/web/setup#available-libraries -->
+		<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+		<script>
+		  // Your web app's Firebase configuration
+		  var firebaseConfig = {
+            apiKey: "AIzaSyDJGfM_eHfx1tZUmm-U16hYZqgVk9_G4U8",
+            authDomain: "android1920-2a174.firebaseapp.com",
+            databaseURL: "https://android1920-2a174.firebaseio.com",
+            projectId: "android1920-2a174",
+            storageBucket: "android1920-2a174.appspot.com",
+            messagingSenderId: "333537459957",
+            appId: "1:333537459957:web:7acef69d4a5556ff904fbc",
+            measurementId: "G-WS3NNCE8SK"
+        };
+		  // Initialize Firebase
+		  firebase.initializeApp(firebaseConfig);
+		</script>
+		<script src = "portal.js"></script>
+		
+	</body>
+
+</html>
