@@ -1,6 +1,22 @@
 $(document).ready(function () {
+	update();
+});
 
-    var ref = firebase.database().ref('ProposedSchools');
+firebase.auth().onAuthStateChanged(function(user)
+{
+	if(user)
+	{
+		if(firebase.database().ref('Users/' + globalUser.uid).accountType != "admin")window.location.replace("portal.html");
+	}
+	else
+	{
+		window.location.replace("portal.html");
+	}
+});
+
+function update()
+{
+	var ref = firebase.database().ref('ProposedSchools');
 
     // var schoolName = "test high school";
     // var adminFirstName = "marian";
@@ -133,8 +149,14 @@ $(document).ready(function () {
             updates["/Schools/" + json["schoolIndex"]] = objectToPush;
             firebase.database().ref().update(updates);
             ref.remove();
+			
+			firebase.database().ref('Users/' + json["organizerID"]).set({
+				email: json["email"],
+				password: json["password"],
+				accountType: json["accountType"],
+				progress: 2
+			  });
             return;
         })
     }
-});
-
+}

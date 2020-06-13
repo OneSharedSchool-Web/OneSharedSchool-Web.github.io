@@ -1,4 +1,7 @@
 window.onload = update();
+var globalUser;
+var email;
+var accountType;
 
 function update()
 {
@@ -6,11 +9,11 @@ function update()
 	ref.on('value', gotData	,errData);
 }
 
-function hide(commentHolder)
+/*function hide(commentHolder)
 {
 	commentHolder.style.display = "none";
 	console.log("hi");
-}
+}*/
 
 function gotData(data)
 {
@@ -29,16 +32,17 @@ function gotData(data)
 		{
 			var k = keys[i];
 			var passage = articleObj[k].passage;
-			var user = articleObj[k].user;
-			var email = firebase.auth().currentUser.email;
 			var id = articleObj[k].postKey;
+			var user = articleObj[k].user;
+			var email = articleObj[k].email;
+			var accountType = articleObj[k].accountType;
 			
 			var commentHolder = document.createElement('div');
 			commentHolder.className = "commentHolder";
 			commentHolder.innerHTML = email + ": " + passage;
 			commentHolder.setAttribute("postKey", id);
 			
-			if(email == "testcase@gmail.com")
+			/*if(email == "testcase@gmail.com")
 			{	
 				var deleteObj = document.createElement('div');
 				deleteObj.className = "delete";
@@ -53,7 +57,7 @@ function gotData(data)
 				}
 				
 				commentHolder.appendChild(deleteObj);
-			}
+			}*/
 			document.getElementById("comments").appendChild(commentHolder);
 			
 			
@@ -67,4 +71,55 @@ function gotData(data)
 function errData(err)
 {
 	console.log(err);
+}
+
+
+function post()
+{
+	firebase.database().ref('/Users/').once('value').then(function(snapshot) {
+		var keys2 = Object.keys(snapshot.val());
+		var email = "";
+		var accountType = "";
+		for(var j= 0; j < keys2.length; j++)
+		{
+			var q = snapshot.val();
+			if(keys2[j] == globalUser.uid)
+			{
+				console.log(q[keys2[j]].email);
+				email = (q[keys2[j]].email);
+				accountType = (q[keys2[j]].accountType);
+			}
+		}
+		var postKey = firebase.database().ref('Posts/').push().key;
+		var updates = {};
+		var postData = 
+		{
+			passage: $("#loggedFormPassage").val(),
+			user: globalUser.uid,
+			email: email,
+			accountType: accountType,
+			postKey: postKey
+		}
+		document.getElementById("loggedFormPassage").value = "";
+		updates['/Posts/' + postKey] = postData;
+		firebase.database().ref().update(updates);
+	});
+}
+
+firebase.auth().onAuthStateChanged(function(user)
+{
+  if (user) {
+    globalUser = user;
+  } else {
+	window.location.replace("portal.html");
+  }
+});
+
+function logout()
+{
+	firebase.auth().signOut().then(function() {
+	  // Sign-out successful.
+	}).catch(function(error) {
+	  // An error happened.
+	});
 }

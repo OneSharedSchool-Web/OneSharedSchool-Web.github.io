@@ -1,3 +1,6 @@
+var globalUser;
+var coin;
+
 $(document).ready(function () {
 
     $("#add_school_button_submit").click(function (e) {
@@ -85,7 +88,15 @@ $(document).ready(function () {
                         //ext = selectedDriversLicense.name.split(".")[1]
                         var schoolIDref = firebase.storage().ref().child("AdminsToBeValidated/School_" + organizerID);
                         schoolIDref.put(selectedSchoolId).then(function (snapshot) {
-                            console.log("Uploaded file successfully! :)")
+                            console.log("Uploaded file successfully! :)");
+							firebase.database().ref('Users/' + globalUser.uid).set({
+								email: coin.email,
+								password: coin.password,
+								accountType: coin.accountType,
+								email: coin.email,
+								progress: 1
+							  });
+							update(globalUser);
                         })
 
                         var updates = {};
@@ -123,4 +134,63 @@ function gotData(data) {
 function errData(data) {
     console.log("error finding the school code")
     console.log(data);
+}
+
+firebase.auth().onAuthStateChanged(function(user)
+{
+	update(user);
+});
+
+function update(user)
+{
+	console.log(user);
+	if (user)
+	{
+		globalUser = user;
+		firebase.database().ref('/Users/').once('value').then(function(snapshot)
+		{
+			var keys2 = Object.keys(snapshot.val());
+			var accountType = "";
+			var j;
+			for(j= 0; j < keys2.length; j++)
+			{
+				var q = snapshot.val();
+				if(keys2[j] == user.uid)
+				{
+					coin = q[keys2[j]];
+					console.log(q[keys2[j]]);
+					console.log(q[keys2[j]].email);
+					accountType = (q[keys2[j]].accountType);
+					break;
+				}
+			}
+			if(accountType != "principal")
+			{
+				console.log(accountType);
+				window.location.replace("portal.html");
+			}
+			else
+			{
+				console.log(q[keys2[j]].progress);
+				if(q[keys2[j]].progress == 0)
+				{
+					
+				}
+				else if(q[keys2[j]].progress == 1)
+				{
+					document.getElementById("hide").style.display = "none";
+					document.getElementById("comment").innerHTML = "Being Verified";
+				}
+				else if(progress == 2)
+				{
+					console.log("?");
+					window.location.replace("dashboard.html");
+				}
+			}
+		});
+  }
+  else 
+  {
+	  window.location.replace("portal.html");
+  }
 }
