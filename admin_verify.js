@@ -4,9 +4,13 @@ $(document).ready(function () {
 
 firebase.auth().onAuthStateChanged(function(user)
 {
+    console.log("Is user logged in?", user)
 	if(user)
 	{
-		if(firebase.database().ref('Users/' + globalUser.uid).accountType != "admin")window.location.replace("portal.html");
+        console.log(firebase.database().ref('Users/' + user.uid).accountType)
+		if (firebase.database().ref('Users/' + user.uid).accountType != "admin") {
+            window.location.replace("portal.html");
+        } 
 	}
 	else
 	{
