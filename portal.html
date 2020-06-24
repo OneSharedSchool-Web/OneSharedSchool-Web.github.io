@@ -6,6 +6,7 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="css/main.css">
 	</head>
 	
 	<body>
@@ -47,7 +48,8 @@
 		<div id = "flexContainer"> 
 			<div id = "innerContainer">
 			
-				<div class = "title" style = "margin-bottom: 10px">Login / SignUp</div>
+				<div id = "errorMessage"></div>
+				<div class = "semititle" style = "margin-bottom: 10px">Login / SignUp</div>
 				
 				<form action="/action_page.php">
 					<span class = "miniTitle">Portal Type: </span>
@@ -65,11 +67,13 @@
 						<input type="radio" id="age2" name="age" value="60" onclick = "student()">
 						<label for="age2">Student</label>
 					</div>
+					
 				</form>
 				
 				<div id = "dif">
 					<input id="email" placeholder="email" class="form"></input>
 					<input id="password" placeholder="password" type="password" class="form"></input>
+					<input id="schoolCode" placeholder="school code" style = "display: none;" class="form"></input>
 					<button id = "formSub" onclick = "submit()"></button>
 				</div>
 				

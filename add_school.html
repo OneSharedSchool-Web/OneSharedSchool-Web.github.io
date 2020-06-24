@@ -50,11 +50,14 @@
 
 </nav>
 		
+		<div id = "loggedNavbar">
+			<button class = "button" onclick = "logout()" style = "border: none; background-color: #d98c8c;margin-left: 20px;">Log Out</button>
+		</div>
 		<!-- login -->
 		<div id = "comment" style = "margin-left: 20px; font-size: 1.5rem;"></div>
 		<!-- sign up -->
         <div class="container" id = "hide">
-            <h3>Administrative Portal to Add Schools</h3>
+            <h3 style = "margin-bottom: 20px;">Administrative Portal to Add Schools</h3>
             <form>
                 <div class="row">
                     
@@ -64,7 +67,7 @@
                     <label for="exampleFormControlInput1" style="display: inline-block;">Full name</label>
 
                     <div class="d-flex flex-row">
-                      <input type="text"  id="firstName" class="mx-3 form-control" placeholder="First name">
+                      <input type="text"  id="firstName" class="mx-3 form-control" placeholder="First name" style = "margin:0px !important;">
                       <input type="text" id="lastName" class="mx-3 form-control" placeholder="Last name">
                     </div>
                 </div>

@@ -181,7 +181,7 @@ function update(user)
 					document.getElementById("hide").style.display = "none";
 					document.getElementById("comment").innerHTML = "Being Verified";
 				}
-				else if(progress == 2)
+				else if(q[keys2[j]].progress == 2)
 				{
 					console.log("?");
 					window.location.replace("dashboard.html");
@@ -193,4 +193,15 @@ function update(user)
   {
 	  window.location.replace("portal.html");
   }
+}
+
+
+
+function logout()
+{
+	firebase.auth().signOut().then(function() {
+	  // Sign-out successful.
+	}).catch(function(error) {
+	  // An error happened.
+	});
 }

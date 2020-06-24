@@ -1,11 +1,15 @@
-window.onload = update();
+
 var globalUser;
 var email;
-var accountType;
+var accountType = "";
+var progress = 0;
+var schoolCode;
 
 function update()
 {
-	var ref = firebase.database().ref('Posts');
+	console.log(schoolCode);
+	console.log(accountType);
+	var ref = firebase.database().ref('Posts/' + schoolCode);
 	ref.on('value', gotData	,errData);
 }
 
@@ -17,6 +21,7 @@ function update()
 
 function gotData(data)
 {
+	console.log(data.val());
 	const myNode = document.getElementById("comments");
 	while (myNode.firstChild) 
 	{
@@ -31,6 +36,7 @@ function gotData(data)
 		for(var i = keys.length - 1; i >= 0; i--)
 		{
 			var k = keys[i];
+			console.log(k);
 			var passage = articleObj[k].passage;
 			var id = articleObj[k].postKey;
 			var user = articleObj[k].user;
@@ -42,8 +48,8 @@ function gotData(data)
 			commentHolder.innerHTML = email + ": " + passage;
 			commentHolder.setAttribute("postKey", id);
 			
-			/*if(email == "testcase@gmail.com")
-			{	
+			if(accountType == "admin" || accountType == "principal" && progress == 2)
+			{
 				var deleteObj = document.createElement('div');
 				deleteObj.className = "delete";
 				
@@ -57,7 +63,8 @@ function gotData(data)
 				}
 				
 				commentHolder.appendChild(deleteObj);
-			}*/
+			}
+			
 			document.getElementById("comments").appendChild(commentHolder);
 			
 			
@@ -76,20 +83,12 @@ function errData(err)
 
 function post()
 {
-	firebase.database().ref('/Users/').once('value').then(function(snapshot) {
-		var keys2 = Object.keys(snapshot.val());
-		var email = "";
-		var accountType = "";
-		for(var j= 0; j < keys2.length; j++)
-		{
-			var q = snapshot.val();
-			if(keys2[j] == globalUser.uid)
-			{
-				console.log(q[keys2[j]].email);
-				email = (q[keys2[j]].email);
-				accountType = (q[keys2[j]].accountType);
-			}
-		}
+	firebase.database().ref('Users/' + globalUser.uid).once('value').then(function(snapshot)
+	{
+		email = snapshot.val().email;
+		schoolCode = snapshot.val().schoolCode;
+		
+		var schoolCode = schoolCode;
 		var postKey = firebase.database().ref('Posts/').push().key;
 		var updates = {};
 		var postData = 
@@ -97,20 +96,31 @@ function post()
 			passage: $("#loggedFormPassage").val(),
 			user: globalUser.uid,
 			email: email,
-			accountType: accountType,
 			postKey: postKey
 		}
 		document.getElementById("loggedFormPassage").value = "";
-		updates['/Posts/' + postKey] = postData;
+		updates['/Posts/' + schoolCode + '/' + postKey] = postData;
 		firebase.database().ref().update(updates);
 	});
 }
 
 firebase.auth().onAuthStateChanged(function(user)
 {
-  if (user) {
+  if (user)
+  {
     globalUser = user;
-  } else {
+	firebase.database().ref('Users/' + user.uid).once("value", (data) => 
+	{
+		progress = data.val().progress;
+		accountType = data.val().accountType;
+		schoolCode = data.val().schoolCode;
+		console.log(schoolCode);
+		if(accountType == "principal" && progress != 2)window.location.replace("portal.html");
+		else if(accountType == "principal" && progress == 2)document.getElementById("schoolCode").innerHTML + "School Code: " + data.val().schoolCode;
+		update();
+	});
+  } 
+  else {
 	window.location.replace("portal.html");
   }
 });

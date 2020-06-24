@@ -7,10 +7,13 @@ firebase.auth().onAuthStateChanged(function(user)
     console.log("Is user logged in?", user)
 	if(user)
 	{
-        console.log(firebase.database().ref('Users/' + user.uid).accountType)
-		if (firebase.database().ref('Users/' + user.uid).accountType != "admin") {
-            window.location.replace("portal.html");
-        } 
+		const ref = firebase.database().ref('Users/' + user.uid);
+        ref.once("value", (data) => {
+			var arter = data.val();
+			if (arter["accountType"] != "admin") {
+				//window.location.replace("portal.html");
+			} 
+		});
 	}
 	else
 	{
@@ -152,15 +155,37 @@ function update()
             var updates = {}
             updates["/Schools/" + json["schoolIndex"]] = objectToPush;
             firebase.database().ref().update(updates);
-            ref.remove();
 			
-			firebase.database().ref('Users/' + json["organizerID"]).set({
-				email: json["email"],
-				password: json["password"],
-				accountType: json["accountType"],
-				progress: 2
-			  });
+			firebase.database().ref('Users/' + json["organizerID"]).once('value').then(function(snapshot){
+				firebase.database().ref('Users/' + json["organizerID"]).set({
+					email: snapshot.val().email,
+					password: snapshot.val().password,
+					accountType: snapshot.val().accountType,
+					schoolCode: json.schoolCode,
+					progress: 2
+				});
+			});
+			
+			
+			  
+			var postKey = json["schoolCode"];
+			var updates = {};
+			var postData = json["schoolIndex"];
+			updates['/SchoolCodes/' + postKey] = postData;
+			firebase.database().ref().update(updates);
+			
+			
+            ref.remove();
             return;
         })
     }
+}
+
+function logout()
+{
+	firebase.auth().signOut().then(function() {
+	  // Sign-out successful.
+	}).catch(function(error) {
+	  // An error happened.
+	});
 }

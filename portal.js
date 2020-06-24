@@ -1,15 +1,15 @@
 var accountType = "";
-var portalType = "";
+var portalType = "login";
 var currentUser;
 var email;
 var password;
-
-logout();
+var code;
 
 function portalTypeLogin()
 {
 	document.getElementById("accountType").style.display = "none";
 	document.getElementById("dif").style.display = "flex";
+	document.getElementById("schoolCode").style.display = "none";
 	document.getElementById("formSub").innerHTML = "Login";
 	portalType = "login";
 }
@@ -17,6 +17,7 @@ function portalTypeSignUp()
 {
 	document.getElementById("accountType").style.display = "block";
 	document.getElementById("dif").style.display = "none";
+	document.getElementById("schoolCode").style.display = "none";
 	document.getElementById("formSub").innerHTML = "SignUp";
 	portalType = "signUp";
 }
@@ -24,11 +25,13 @@ function principal()
 {
 	accountType = "principal";
 	document.getElementById("dif").style.display = "flex";
+	document.getElementById("schoolCode").style.display = "none";
 }
 function student()
 {
 	accountType = "student";
 	document.getElementById("dif").style.display = "flex";
+	document.getElementById("schoolCode").style.display = "flex";
 }
 
 function submit()
@@ -43,19 +46,30 @@ function submit()
 		  // Handle Errors here.
 		  var errorCode = error.code;
 		  var errorMessage = error.message;
+		  document.getElementById("errorMessage").innerHTML = errorMessage;
 		  // ...
 		});
 	}
 	else
 	{
-		firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-		  // Handle Errors here.
-		  var errorCode = error.code;
-		  var errorMessage = error.message;
-		  console.log(errorMessage);
-		  // ...
-		});
+		var isValid = false;
+		var obj = document.getElementById("schoolCode").value;
+		console.log(obj);
+		console.log(firebase.database().ref('SchoolCodes'));
 		
+		firebase.database().ref('SchoolCodes/' + obj).once("value", (data) => {
+			var arter = data.val();
+			if(arter != undefined)
+			{
+				signUp(email, password);
+				console.log("MINE");
+				code = obj;
+			}
+			else{
+				
+				document.getElementById("errorMessage").innerHTML = "Invalid School Code";
+			}
+		});
 	}
 }
 
@@ -125,6 +139,7 @@ function addUser()
 			email: email,
 			password: password,
 			accountType: accountType,
+			schoolCode: code
 		}
 		
 		updates['/Users/' + postKey] = postData;
@@ -170,5 +185,15 @@ function logout()
 	  // Sign-out successful.
 	}).catch(function(error) {
 	  // An error happened.
+	});
+}
+function signUp(email, password)
+{
+	firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+	  // Handle Errors here.
+	  var errorCode = error.code;
+	  var errorMessage = error.message;
+	  document.getElementById("errorMessage").innerHTML = errorMessage;
+	  // ...
 	});
 }
