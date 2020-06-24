@@ -23,6 +23,8 @@ body
 	height: 60px;
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
+	padding-right: 30px;
 }
 
 #loggedUI
@@ -209,4 +211,10 @@ body
 	background-image: url("../img/delete.png");
 	background-position: center;
 	background-size: cover;
+}
+
+#schoolCode
+{
+	font-size: 1.25rem;
+	color: black;
 }

@@ -24,18 +24,18 @@ body
 .miniTitle
 {
 	font-family: 'Montserrat', sans-serif;
-	font-weight: bold;
+	font-weight: none;
     color: #578edb;
-	font-size: 1.5rem;
+	font-size: 1.25rem;
 	width: 100%;
 }
 
-.title
+.semititle
 {
 	font-family: 'Montserrat', sans-serif;
 	font-weight: bold;
     color: #578edb;
-	font-size: 3rem;
+	font-size: 2rem;
 	width: 100%;
 
 }
@@ -51,6 +51,12 @@ body
 	width: 80px;
 	height: 40px;
 	margin-top: 10px;
+}
+
+#errorMessage
+{
+	padding: 20px 0px 20px 00px;
+	font-size: 1.5rem;
 }
 
 .form

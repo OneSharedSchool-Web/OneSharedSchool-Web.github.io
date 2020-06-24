@@ -97,6 +97,7 @@ body {
   height: 500px;
   position: relative;
   background: url("../img/child4.jpg") no-repeat center;
+  margin: 0px !important;
 }
 
 

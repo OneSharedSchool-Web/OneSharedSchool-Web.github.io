@@ -1,0 +1,9 @@
+#loggedNavbar
+{
+	background-color: #f2f2f2;
+	width: 100%;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	margin-bottom: 40px;
+}

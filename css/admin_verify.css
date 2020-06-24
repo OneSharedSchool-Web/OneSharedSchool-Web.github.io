@@ -13,3 +13,14 @@
 #check_div:hover {
     background-color: oldlace;
 }
+
+#loggedNavbar
+{
+	background-color: #f2f2f2;
+	width: 100%;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-right: 30px;
+}
