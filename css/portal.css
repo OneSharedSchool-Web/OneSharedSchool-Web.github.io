@@ -20,6 +20,9 @@ body
 	display: flex;
 	flex-direction: column;
 	border-right: 1px solid black;
+	border-radius: 10px;
+	background-color: #fafafa;
+	padding: 15px;
 }
 
 .miniTitle
