@@ -4,36 +4,50 @@ var currentUser;
 var email;
 var password;
 var code;
+var name;
+var phone;
+var bio;
+var pfpurl;
+var location2;
+var school;
+
+window.onload = logout();
 
 function portalTypeLogin() {
 	document.getElementById("usertype").style.display = "none";
 	document.getElementById("dif").style.display = "flex";
-	document.getElementById("schoolCode").style.display = "none";
 	document.getElementById("formSub").innerHTML = "Login";
 	portalType = "login";
+	turnDown();
 }
 function portalTypeSignUp() {
 	document.getElementById("usertype").style.display = "block";
 	document.getElementById("dif").style.display = "none";
-	document.getElementById("schoolCode").style.display = "none";
 	document.getElementById("formSub").innerHTML = "SignUp";
 	portalType = "signUp";
 }
-function principal() {
+function principal(){
 	usertype = "principal";
 	document.getElementById("dif").style.display = "flex";
-	document.getElementById("schoolCode").style.display = "none";
+	turnUp();
 }
 function student() {
 	usertype = "student";
 	document.getElementById("dif").style.display = "flex";
-	document.getElementById("schoolCode").style.display = "flex";
+	turnUp();
 }
 
 function submit() {
 	console.log(usertype + " " + portalType);
 	email = document.getElementById("email").value;
 	password = document.getElementById("password").value;
+	schoolCode = document.getElementById("schoolCode").value;
+	name = document.getElementById("name").value;
+	phone = document.getElementById("phone").value;
+	bio = document.getElementById("bio").value;
+	pfpurl = document.getElementById("pfpurl").value;
+	location2 = document.getElementById("location").value;
+	school = document.getElementById("school").value;
 
 	if (portalType == "login") {
 		firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
@@ -67,8 +81,11 @@ function submit() {
 
 firebase.auth().onAuthStateChanged(function (user) {
 	if (user) {
+		console.log(user);
+		document.getElementById("loading").style.display = "flex";
 		currentUser = user;
-		if (portalType == "signUp") {
+		if (portalType == "signUp")
+		{
 			addUser();
 			if (usertype == "student") {
 				setTimeout(relocateDash, 2000);
@@ -121,13 +138,13 @@ function addUser() {
 			password: password,
 			usertype: usertype,
 			schoolCode: code,
-			name: "",
-			bio: "",
+			name: name,
+			bio: bio,
 			language: "English",
-			location: "",
-			phone: "",
-			school: "",
-			pfpUrl: "",
+			locationID: location2,
+			phone: phone,
+			school: school,
+			pfpUrl: pfpurl
 		}
 
 		updates['/Users/' + postKey] = postData;
@@ -144,7 +161,14 @@ function addUser() {
 			email: email,
 			password: password,
 			usertype: usertype,
-			progress: progress
+			schoolCode: code,
+			name: name,
+			bio: bio,
+			language: "English",
+			locationID: location2,
+			phone: phone,
+			school: school,
+			pfpUrl: pfpurl
 		}
 
 		updates['/Users/' + postKey] = postData;
@@ -178,4 +202,16 @@ function signUp(email, password) {
 		document.getElementById("errorMessage").innerHTML = errorMessage;
 		// ...
 	});
+}
+
+function turnUp()
+{
+	var turn = document.getElementsByClassName("turn");
+	for(var i = 0; i < turn.length; i++)turn[i].style.display = "flex";
+}
+
+function turnDown()
+{
+	var turn = document.getElementsByClassName("turn");
+	for(var i = 0; i < turn.length; i++)turn[i].style.display = "none";
 }

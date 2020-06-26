@@ -46,9 +46,10 @@
 
 </nav>
 		<div id = "flexContainer"> 
+		
 			<div id = "innerContainer">
 			
-				<div id = "errorMessage"></div>
+				<div id = "errorMessage"></div>	
 				<div class = "semititle" style = "margin-bottom: 10px">Login / SignUp</div>
 				
 				<form action="/action_page.php">
@@ -71,10 +72,23 @@
 				</form>
 				
 				<div id = "dif">
+				
+					<div class = "organize">
 					<input id="email" placeholder="email" class="form"></input>
 					<input id="password" placeholder="password" type="password" class="form"></input>
-					<input id="schoolCode" placeholder="school code" style = "display: none;" class="form"></input>
-					<button id = "formSub" onclick = "submit()"></button>
+					<input id="schoolCode" placeholder="school code" style = "display: none;" class="form turn"></input>
+					<input id="name" placeholder="name" style = "display: none;" class="form turn"></input>
+					<input id="phone" placeholder="phone" style = "display: none;" type = "number" class="form turn"></input>
+					<input id="school" placeholder="school" style = "display: none;" class="form turn"></input>
+					<input id="location" placeholder="location" style = "display: none;" class="form turn"></input>
+					<input id="pfpurl" placeholder="profile pic url" style = "display: none;" class="form turn"></input>
+					<input id="bio" placeholder="bio" style = "display: none;" class="form turn"></input>
+					</div>
+					
+					<div style = "display:flex;flex-direction: row;align-items: center;">
+						<button id = "formSub" onclick = "submit()"></button>
+						<img src = "img/loading.gif" height = "50px" style = "display: none;margin-top: 10px;" id = "loading">
+					</div>
 				</div>
 				
 			</div>
