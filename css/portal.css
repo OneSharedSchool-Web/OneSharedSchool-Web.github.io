@@ -7,18 +7,19 @@ body
 #flexContainer
 {
 	width: 100%;
-	height: 100%;
+	height: calc(100% - 66px);
 	display: flex;
-	align-items: center;
 	justify-content: center;
+	align-items: center;
 }
 
 #innerContainer
 {
-	min-width: 400px;
-	height: 500px;
+	min-width: 450px;
+	height: auto;
 	display: flex;
 	flex-direction: column;
+	border-right: 1px solid black;
 }
 
 .miniTitle
@@ -55,13 +56,20 @@ body
 
 #errorMessage
 {
-	padding: 20px 0px 20px 00px;
 	font-size: 1.5rem;
 }
 
 .form
 {
-	width: 80%;
+	width: 100%;
 	height: 40px;
-	margin-top: 10px;
+}
+
+.organize
+{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto;
+	grid-gap: 10px;
+	margin-right: 20px;
 }
