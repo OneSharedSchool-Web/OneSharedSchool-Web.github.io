@@ -43,6 +43,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 	// flip ui
 	document.getElementById("holder").style.display = "none";
 	document.getElementById("loggedUI").style.display = "flex";
+
+	window.location = "/portal.html"
+	
+	console.log("the user is logged in")
 	
 	//change flex direction
 	

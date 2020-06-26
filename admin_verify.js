@@ -10,7 +10,7 @@ firebase.auth().onAuthStateChanged(function(user)
 		const ref = firebase.database().ref('Users/' + user.uid);
         ref.once("value", (data) => {
 			var arter = data.val();
-			if (arter["accountType"] != "admin") {
+			if (arter["usertype"] != "admin") {
 				//window.location.replace("portal.html");
 			} 
 		});
@@ -141,15 +141,15 @@ function update()
 
             let objectToPush = {
                 description: json["description"],
-                fundlink: "google.com",
-                id: json["schoolIndex"],
+                fundLink: json["fundLink"],
+                id: json["schoolIndex"] + "",
                 imageUri: json["imageUri"],
                 items: json["items"],
-                location: "37.89, -122.2",
+                location: json["location"],
                 name: json["name"],
                 organizerID: json["organizerID"],
-                raisedMoney: 0,
-                totalMoney: 100
+                raisedMoney: 0.0,
+                totalMoney: 100.0
             }
 
             var updates = {}
@@ -160,7 +160,7 @@ function update()
 				firebase.database().ref('Users/' + json["organizerID"]).set({
 					email: snapshot.val().email,
 					password: snapshot.val().password,
-					accountType: snapshot.val().accountType,
+					usertype: snapshot.val().usertype,
 					schoolCode: json.schoolCode,
 					progress: 2
 				});

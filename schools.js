@@ -57,7 +57,7 @@ function gotData(data)
 			handle(organizerID);
 			
 			var schoolLink = document.createElement('a');
-			schoolLink.href =  "https://" + fundLink;
+			schoolLink.href =  fundLink;
 			schoolLink.innerHTML = "Click Here for Go Fund Me"
 			
 			schoolInfo.appendChild(schoolTitle);

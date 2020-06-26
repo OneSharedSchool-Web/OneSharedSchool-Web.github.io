@@ -1,14 +1,14 @@
 
 var globalUser;
 var email;
-var accountType = "";
+var usertype = "";
 var progress = 0;
 var schoolCode;
 
 function update()
 {
 	console.log(schoolCode);
-	console.log(accountType);
+	console.log(usertype);
 	var ref = firebase.database().ref('Posts/' + schoolCode);
 	ref.on('value', gotData	,errData);
 }
@@ -41,14 +41,14 @@ function gotData(data)
 			var id = articleObj[k].postKey;
 			var user = articleObj[k].user;
 			var email = articleObj[k].email;
-			var accountType = articleObj[k].accountType;
+			var usertype = articleObj[k].usertype;
 			
 			var commentHolder = document.createElement('div');
 			commentHolder.className = "commentHolder";
 			commentHolder.innerHTML = email + ": " + passage;
 			commentHolder.setAttribute("postKey", id);
 			
-			if(accountType == "admin" || accountType == "principal" && progress == 2)
+			if(usertype == "admin" || usertype == "principal" && progress == 2)
 			{
 				var deleteObj = document.createElement('div');
 				deleteObj.className = "delete";
@@ -112,11 +112,11 @@ firebase.auth().onAuthStateChanged(function(user)
 	firebase.database().ref('Users/' + user.uid).once("value", (data) => 
 	{
 		progress = data.val().progress;
-		accountType = data.val().accountType;
+		usertype = data.val().usertype;
 		schoolCode = data.val().schoolCode;
 		console.log(schoolCode);
-		if(accountType == "principal" && progress != 2)window.location.replace("portal.html");
-		else if(accountType == "principal" && progress == 2)document.getElementById("schoolCode").innerHTML + "School Code: " + data.val().schoolCode;
+		if(usertype == "principal" && progress != 2)window.location.replace("portal.html");
+		else if(usertype == "principal" && progress == 2)document.getElementById("schoolCode").innerHTML + "School Code: " + data.val().schoolCode;
 		update();
 	});
   } 

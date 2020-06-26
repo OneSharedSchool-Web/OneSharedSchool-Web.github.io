@@ -1,154 +1,173 @@
 <html>
-	
-	<head>
-	
-		<link href="https://fonts.googleapis.com/css?family=Oxanium|Spartan&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" href="css/admin.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<link rel="stylesheet" href="css/dashboard.css">
-		<link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/add_school.css">
-	</head>
-	
-	<body>
-	
-		<nav class="navbar navbar-expand-lg navbar-light bg-light"  style="background-color: white !important;" id="navbar">
-    <span class="navbar-brand mb-0 h1" style="color:#578edb !important;">
-      <img src="img/logo.png" width="150" height="40" class="d-inline-block align-top" alt="logo">
-    </span>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="schools.html">Schools</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="works.html">How does it work?</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="news.html">News</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact</a>
-            </li>
-			<li class="nav-item">
-			  <a class="nav-link" href="portal.html">Portal</a>
-			</li>
-        </ul>
+<head>
+
+    <link href="https://fonts.googleapis.com/css?family=Oxanium|Spartan&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/add_school.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: white !important;" id="navbar">
+        <span class="navbar-brand mb-0 h1" style="color:#578edb !important;">
+            <img src="img/logo.png" width="150" height="40" class="d-inline-block align-top" alt="logo">
+        </span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="schools.html">Schools</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="works.html">How does it work?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="news.html">News</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="portal.html">Portal</a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <div id="loggedNavbar">
+        <button class="button" onclick="logout()" style="border: none; background-color: #d98c8c;margin-left: 20px;">Log
+            Out</button>
+    </div>
+    <!-- login -->
+    <div id="comment" style="margin-left: 20px; font-size: 1.5rem;"></div>
+    <!-- sign up -->
+    <div class="container" id="hide">
+        <h3 style="margin-bottom: 20px;">Administrative Portal to Add Schools</h3>
+        <form>
+            <div class="row">
+
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlInput1" style="display: inline-block;">Full name</label>
+
+                <div class="d-flex flex-row">
+                    <input type="text" id="firstName" class="mx-3 form-control" placeholder="First name"
+                        style="margin:0px !important;">
+                    <input type="text" id="lastName" class="mx-3 form-control" placeholder="Last name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlInput1">School Email address</label>
+                <input type="email" class="form-control" id="schoolEmail" placeholder="name@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlInput1">School Name</label>
+                <input type="text" class="form-control" id="schoolName" placeholder="Cupertino High School">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Provide a direct link to view a photo of your school</label>
+                <input type="text" class="form-control" id="photoLink" placeholder="https://yourimage.png">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlTextarea2">School Description</label>
+                <textarea class="form-control" id="schoolDescription" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlTextarea2">What will donations be used for (items separated by
+                    commas)</label>
+                <textarea class="form-control" id="donationsUsedFor" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Provide a direct link to your school's gofundme page</label>
+                <input type="text" class="form-control" id="gofundme" placeholder="www.gofundme.org">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Provide the lattitude, and longitude of your school (for our
+                    schools map!)</label>
+                <div class="d-flex flex-row">
+                    <input type="text" id="lattitude" class="mx-3 form-control" placeholder="Lattitude"
+                        style="margin:0px !important;">
+                    <input type="text" id="longitude" class="mx-3 form-control" placeholder="Longitude">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Provide any other information we need to help us verify your
+                    identity</label>
+                <textarea class="form-control" id="otherVerificationInfo" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Drivers License / Passport / Other official document with
+                    photo</label>
+                <input type="file" class="form-control-file" id="driversLicense">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlFile1">School issued identification card</label>
+                <input type="file" class="form-control-file" id="schoolIDcard">
+            </div>
+            <button id="add_school_button_submit" type="button" class="btn btn-primary">Submit for Verification</button>
+        </form>
     </div>
 
-</nav>
-		
-		<div id = "loggedNavbar">
-			<button class = "button" onclick = "logout()" style = "border: none; background-color: #d98c8c;margin-left: 20px;">Log Out</button>
-		</div>
-		<!-- login -->
-		<div id = "comment" style = "margin-left: 20px; font-size: 1.5rem;"></div>
-		<!-- sign up -->
-        <div class="container" id = "hide">
-            <h3 style = "margin-bottom: 20px;">Administrative Portal to Add Schools</h3>
-            <form>
-                <div class="row">
-                    
-                </div>
 
-                <div class="form-group">
-                    <label for="exampleFormControlInput1" style="display: inline-block;">Full name</label>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
 
-                    <div class="d-flex flex-row">
-                      <input type="text"  id="firstName" class="mx-3 form-control" placeholder="First name" style = "margin:0px !important;">
-                      <input type="text" id="lastName" class="mx-3 form-control" placeholder="Last name">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">School Email address</label>
-                    <input type="email" class="form-control" id="schoolEmail" placeholder="name@example.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">School Name</label>
-                    <input type="text" class="form-control" id="schoolName" placeholder="Cupertino High School">
-				</div>
-				
-				<div class="form-group">
-                    <label for="exampleFormControlInput1">Provide a direct link to view a photo of your school</label>
-                    <input type="text" class="form-control" id="photoLink" placeholder="https://yourimage.png">
-				</div>
-
-				<div class="form-group">
-					<label for="exampleFormControlTextarea2">School Description</label>
-					<textarea class="form-control" id="schoolDescription" rows="3"></textarea>
-				</div>
-
-				<div class="form-group">
-					<label for="exampleFormControlTextarea2">What will donations be used for (items separated by commas)</label>
-					<textarea class="form-control" id="donationsUsedFor" rows="3"></textarea>
-				</div>
-
-				<div class="form-group">
-                    <label for="exampleFormControlInput1">Provide a direct link to your school's gofundme page</label>
-                    <input type="text" class="form-control" id="gofundme" placeholder="www.gofundme.org">
-				</div>
-
-                
-                <div class="form-group">
-                  <label for="exampleFormControlTextarea1">Provide any other information we need to help us verify your identity</label>
-                  <textarea class="form-control" id="otherVerificationInfo" rows="3"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlFile1">Drivers License / Passport / Other official document with photo</label>
-                    <input type="file" class="form-control-file" id="driversLicense">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleFormControlFile1">School issued identification card</label>
-                    <input type="file" class="form-control-file" id="schoolIDcard">
-                  </div>
-                  <button id="add_school_button_submit" type="button" class="btn btn-primary">Submit for Verification</button>
-              </form>
-        </div>
-       
-		
-		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
-
-		<!-- TODO: Add SDKs for Firebase products that you want to use
+    <!-- TODO: Add SDKs for Firebase products that you want to use
 			 https://firebase.google.com/docs/web/setup#available-libraries -->
-		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-		
-        <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-firestore.js"></script>
+    
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJGfM_eHfx1tZUmm-U16hYZqgVk9_G4U8&callback=initMap"
+    type="text/javascript"></script>
+    <script>
+
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDJGfM_eHfx1tZUmm-U16hYZqgVk9_G4U8",
+            authDomain: "android1920-2a174.firebaseapp.com",
+            databaseURL: "https://android1920-2a174.firebaseio.com",
+            projectId: "android1920-2a174",
+            storageBucket: "android1920-2a174.appspot.com",
+            messagingSenderId: "333537459957",
+            appId: "1:333537459957:web:7acef69d4a5556ff904fbc",
+            measurementId: "G-WS3NNCE8SK"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script src="add_school.js"></script>
 
 
-		<script>
+</body>
 
-		  // Your web app's Firebase configuration
-		  var firebaseConfig = {
-        apiKey: "AIzaSyDJGfM_eHfx1tZUmm-U16hYZqgVk9_G4U8",
-        authDomain: "android1920-2a174.firebaseapp.com",
-        databaseURL: "https://android1920-2a174.firebaseio.com",
-        projectId: "android1920-2a174",
-        storageBucket: "android1920-2a174.appspot.com",
-        messagingSenderId: "333537459957",
-        appId: "1:333537459957:web:7acef69d4a5556ff904fbc",
-        measurementId: "G-WS3NNCE8SK"
-    };
-		  // Initialize Firebase
-		  firebase.initializeApp(firebaseConfig);
-        </script>
-        
-        <script src="add_school.js"></script>
-
-		
-	</body>
 </html>
