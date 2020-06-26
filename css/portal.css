@@ -17,12 +17,13 @@ body
 {
 	min-width: 450px;
 	height: auto;
+	max-height: 490px;
 	display: flex;
 	flex-direction: column;
-	border-right: 1px solid black;
 	border-radius: 10px;
 	background-color: #fafafa;
 	padding: 15px;
+	overflow: auto;
 }
 
 .miniTitle
@@ -75,4 +76,11 @@ body
 	grid-template-rows: auto;
 	grid-gap: 10px;
 	margin-right: 20px;
+}
+
+#bio
+{
+	height: 60px;
+	margin-top: 10px;
+	max-width: calc(100% - 20px);
 }
