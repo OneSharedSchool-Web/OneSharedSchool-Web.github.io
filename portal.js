@@ -159,13 +159,12 @@ function addUser() {
 		var postData =
 		{
 			email: email,
-			password: password,
 			usertype: usertype,
 			schoolCode: code,
 			name: name,
 			bio: bio,
 			language: "English",
-			locationID: location2,
+			location: location2,
 			phone: phone,
 			school: school,
 			pfpUrl: pfpurl
