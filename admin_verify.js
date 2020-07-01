@@ -149,23 +149,16 @@ function update()
                 name: json["name"],
                 organizerID: json["organizerID"],
                 raisedMoney: 0.0,
-                totalMoney: 100.0
+                totalMoney: 0.0
             }
 
             var updates = {}
             updates["/Schools/" + json["schoolIndex"]] = objectToPush;
             firebase.database().ref().update(updates);
-			
-			firebase.database().ref('Users/' + json["organizerID"]).once('value').then(function(snapshot){
-				firebase.database().ref('Users/' + json["organizerID"]).set({
-					email: snapshot.val().email,
-					password: snapshot.val().password,
-					usertype: snapshot.val().usertype,
-					schoolCode: json.schoolCode,
-					progress: 2
-				});
-			});
-			
+
+			var result = geocodeLatLng(json["location"], json);
+						
+
 			
 			  
 			var postKey = json["schoolCode"];
@@ -188,4 +181,54 @@ function logout()
 	}).catch(function(error) {
 	  // An error happened.
 	});
+}
+function geocodeLatLng(input, json) {
+	var latlngStr = input.split(', ', 2);
+	var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+	var geocoder = new google.maps.Geocoder;
+
+	geocoder.geocode({'location': latlng}, function(results, status) {
+        if (status === 'OK') {
+            if (results[0]) {
+
+                var locString = results[0];
+                var locArray = parse_place(locString);
+                location2 = locArray['city'] + ", " + locArray['country'];
+                console.log("Loc: " + location2);
+                
+                firebase.database().ref('Users/' + json["organizerID"]).update({
+                    progress: 2,
+                    school: json["schoolIndex"],
+                    location: location2
+                    
+                });
+            }
+        } 
+		return "-1"
+	});
+	
+  }
+
+function parse_place(place){
+    var location = [];
+
+    for (var ac = 0; ac < place.address_components.length; ac++)
+    {
+        var component = place.address_components[ac];
+
+        switch(component.types[0])
+        {
+            case 'locality':
+                location['city'] = component.long_name;
+                break;
+            case 'administrative_area_level_1':
+                location['state'] = component.long_name;
+                break;
+            case 'country':
+                location['country'] = component.long_name;
+                break;
+        }
+    };
+
+    return location;
 }

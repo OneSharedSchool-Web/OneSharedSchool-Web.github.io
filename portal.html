@@ -6,7 +6,39 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDJGfM_eHfx1tZUmm-U16hYZqgVk9_G4U8"></script>
+
 		<link rel="stylesheet" href="css/main.css">
+
+		<style>
+			/* Tooltip container */
+			.tooltip {
+			  position: relative;
+			  display: inline-block;
+			  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+			}
+			
+			/* Tooltip text */
+			.tooltip .tooltiptext {
+			  visibility: hidden;
+			  width: 120px;
+			  background-color: black;
+			  color: #fff;
+			  text-align: center;
+			  padding: 5px 0;
+			  border-radius: 6px;
+			 
+			  /* Position the tooltip text - see examples below! */
+			  position: absolute;
+			  z-index: 1;
+			}
+			
+			/* Show the tooltip text when you mouse over the tooltip container */
+			.tooltip:hover .tooltiptext {
+			  visibility: visible;
+			}
+			</style>
+
 	</head>
 	
 	<body>
@@ -74,18 +106,34 @@
 				<div id = "dif">
 				
 					<div class = "organize">
-					<input id="email" placeholder="email" class="form"></input>
-					<input id="password" placeholder="password" type="password" class="form"></input>
-					<input id="schoolCode" placeholder="school code" style = "display: none;" class="form turn"></input>
-					<input id="name" placeholder="name" style = "display: none;" class="form turn"></input>
-					<input id="phone" placeholder="phone" style = "display: none;" type = "number" class="form turn"></input>
-					<input id="school" placeholder="school" style = "display: none;" class="form turn"></input>
-					<input id="location" placeholder="location" style = "display: none;" class="form turn"></input>
-					<input id="pfpurl" placeholder="profile pic url" style = "display: none;" class="form turn"></input>
-					</div>
+					<label for="email">Email
+					<input id="email" title="Example: *****@gmail.com" placeholder="johndoe@gmail.com" class="form"></input> </label>
+					<label for="password">Password
+					<input id="password" title="Try to include atleast 1 lowercase letter, 1 uppercase letter, 1 number, and 1 special character, with a password length of atleast 8 characters" placeholder="password" type="password" class="form"></input> </label>
 					
-					<textarea id="bio" placeholder="bio" style = "display: none;" class="form turn"></textarea>
-					<div style = "display:flex;flex-direction: row;align-items: center;">
+					<label id="schoolLabel" for="schoolCode">School Code
+					<input id="schoolCode" placeholder="1234567890" style = "display: none;" class="form turn"></input> </label>
+
+					<label id="nameLabel" for="name">Name
+					<input id="name" placeholder="John Doe" style = "display: none;" class="form turn"></input> </label>
+
+					<label id="phoneLabel" for="phone">Phone
+					<input id="phone" title="Example: 123-456-7890" placeholder="123-456-7890" style = "display: none;" class="form turn"></input> </label>	
+					</label>
+					<!-- <label for="language">Language</label>
+
+					<select name="language" id="language" class="form turn">
+					<option value="english">Volvo</option>
+					<option value="saab">Saab</option>
+					<option value="mercedes">Mercedes</option>
+					<option value="audi">Audi</option>
+					</select> -->
+					</div>
+					<label id="pfpurlLabel" for="pfpurl">Profile Picture URL
+						<input id="pfpurl" title="Example: 123-456-7890" placeholder="https://mywebsite.com/mypng" style = "display: none;" class="form turn"></input> </label>
+					<label id="bioLabel" for="bio">Bio</label>
+					<textarea id="bio" placeholder="Say something about yourself!" style = "display: none;" class="form turn fulllength"></textarea>
+					<div style = "display:flex;flex-direction: row;align-items: center;"></div>
 						<button id = "formSub" onclick = "submit()"></button>
 						<img src = "img/loading.gif" height = "50px" style = "display: none;margin-top: 10px;" id = "loading">
 					</div>

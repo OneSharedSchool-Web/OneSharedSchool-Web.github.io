@@ -77,6 +77,10 @@ body
 	grid-gap: 10px;
 	margin-right: 20px;
 }
+#pfpurl{
+	width: 95%;
+
+}
 
 #bio
 {
