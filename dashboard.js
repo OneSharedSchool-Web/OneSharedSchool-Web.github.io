@@ -4,24 +4,80 @@ var email;
 var usertype = "";
 var progress = 0;
 var schoolCode;
-
+var once = false;
 function update()
 {
 	console.log(schoolCode);
 	console.log(usertype);
+	if(once == false)
+	{
+		once = true;
+		firebase.database().ref('Users/' + globalUser.uid).once("value", (data) => {
+			var json = data.val().listOfCodes;
+			var arter = data.val();
+			for(var i = 0; i < json.length; i++)
+			{
+				var elem = document.createElement('div');
+				elem.className = "indCode"
+				elem.innerHTML = json[i];
+				elem.onclick = function(eventClick)
+				{
+					console.log(eventClick.target.innerHTML);
+					firebase.database().ref('Users/' + globalUser.uid).update({
+						schoolCode: eventClick.target.innerHTML
+					});
+					schoolCode = eventClick.target.innerHTML;
+					document.getElementById("codes").style.display = "none";
+					update();
+				};
+				var codes = document.getElementById("codes");
+				codes.appendChild(elem);
+			}
+		});
+	}
+	
 	var ref = firebase.database().ref('Posts/' + schoolCode);
 	ref.on('value', gotData	,errData);
 }
 
-/*function hide(commentHolder)
+function addSchool()
 {
-	commentHolder.style.display = "none";
-	console.log("hi");
-}*/
+	var isValid = false;
+	var obj = document.getElementById("schoolCodeRecive").value;
+	console.log(obj);
+	console.log(firebase.database().ref('SchoolCodes'));
+	if(obj == "")return;
+	firebase.database().ref('SchoolCodes/' + obj).once("value", (data) => {
+		var arter = data.val();
+		if (arter != undefined)
+		{
+			firebase.database().ref('Users/' + globalUser.uid).once("value", (data) => {
+				var list = data.val().listOfCodes
+				console.log(list);
+				if(list.indexOf(obj) == -1)list.push(obj);
+				firebase.database().ref('Users/' + globalUser.uid).update({
+					listOfCodes: list,
+					schoolCode: obj
+				});
+				schoolCode = obj;
+				update();
+			});
+		}
+		else 
+		{
+			document.getElementById("errorMessage").innerHTML = "Invalid School Code";
+		}
+	});
+}
+
+function showCodes()
+{
+	document.getElementById("codes").style.display = "flex";
+}
 
 function gotData(data)
 {
-	console.log(data.val());
+	console.log(data.val() + "poopoopeepee");
 	const myNode = document.getElementById("comments");
 	while (myNode.firstChild) 
 	{
@@ -116,7 +172,15 @@ firebase.auth().onAuthStateChanged(function(user)
 		schoolCode = data.val().schoolCode;
 		console.log(schoolCode);
 		if(usertype == "principal" && progress != 2)window.location.replace("portal.html");
-		else if(usertype == "principal" && progress == 2)document.getElementById("schoolCode").innerHTML + "School Code: " + data.val().schoolCode;
+		else if(usertype == "principal" && progress == 2)
+		{
+			console.log("HIPOO");
+			document.getElementById("schoolCode").innerHTML = "School Code: " + schoolCode;
+			document.getElementById("addASchool").style.display = "none";
+		}
+		else{
+			document.getElementById("addASchool").style.display = "flex";
+		}
 		update();
 	});
   } 

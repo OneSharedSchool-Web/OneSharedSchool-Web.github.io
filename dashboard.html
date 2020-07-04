@@ -77,7 +77,15 @@
 			
 			<div id = "loggedNavbar">
 				<button class = "button" onclick = "logout()" style = "border: none; background-color: #d98c8c;margin-left: 20px;">Log Out</button>
-				<div id = "schoolCode"></div>
+				<div style = "display: flex;flex-direction:row;align-items: center;">
+					<div id = "addASchool" style = "display: flex;flex-direction:row;align-items: center;">
+						<div id = "errorMessage"></div>	
+						<input id="schoolCodeRecive" placeholder="School Code" class="form turn"></input>
+						<button class = "button" onclick = "addSchool()" style = "border: none; background-color: #d98c8c; width: 130px !important;">Add School</button>
+						<img src = "img/open.png" id = "open" onclick = "showCodes()"></img>
+					</div>
+					<div id = "schoolCode" class = "aFont" style = "margin-left: 10px; color: black;margin-right: 20px;"></div>
+				</div>
 			</div>
 			
 			<div  id = "turn">
@@ -86,6 +94,9 @@
 					<button id = "submit" onclick = "post()" class = "button">Post</button>
 				</div>
 				<div id = "comments">
+				
+				</div>
+				<div id = "codes">
 				
 				</div>
 			</div>
