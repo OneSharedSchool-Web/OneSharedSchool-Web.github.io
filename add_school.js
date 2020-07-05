@@ -3,8 +3,6 @@ var coin;
 
 $(document).ready(function () {
 
-    var geocoder = new google.maps.Geocoder;
-    console.log("created geocoder", geocoder)
 
     $("#add_school_button_submit").click(function (e) {
         e.preventDefault();
@@ -19,7 +17,7 @@ $(document).ready(function () {
         var donationsUsedFor = $("#donationsUsedFor").val();
         var gofundmeLink = $("#gofundme").val();
         var otherVerificationInfo = $("#otherVerificationInfo").val();
-        var lattitude = $("#lattitude").val();
+        var latitude = $("#latitude").val();
         var longitude = $("#longitude").val();
 
         var selectedDriversLicense = document.getElementById('driversLicense').files[0];
@@ -33,7 +31,7 @@ $(document).ready(function () {
 
         if (!(firstName && lastName && schoolEmail && schoolName && photoLink &&
             schoolDescription && donationsUsedFor && gofundmeLink && selectedDriversLicense
-            && selectedSchoolId && lattitude && longitude)) {
+            && selectedSchoolId && latitude && longitude)) {
             alert("Please fill out all fields and try again")
             return
         }
@@ -74,7 +72,7 @@ $(document).ready(function () {
                     selectedDriversLicense: selectedDriversLicense.name,
                     selectedSchoolId: selectedSchoolId.name,
                     fundLink: gofundmeLink,
-                    location: lattitude + ", " + longitude,
+                    location: latitude + ", " + longitude,
                     schoolCode: schoolCode + ""
                     //TODO add all the other fields here
                 }
