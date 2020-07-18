@@ -198,7 +198,7 @@ function geocodeLatLng(input, json) {
                 
                 firebase.database().ref('Users/' + json["organizerID"]).update({
                     progress: 2,
-                    school: json["schoolIndex"],
+                    school: ""+json["schoolIndex"],
                     location: location2
                     
                 });
