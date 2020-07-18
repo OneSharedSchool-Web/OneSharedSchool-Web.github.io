@@ -1,4 +1,4 @@
-const { parse } = require("path");
+// const { parse } = require("path");
 
 var usertype = "";
 var portalType = "login";

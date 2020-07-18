@@ -36,11 +36,6 @@ $(document).ready(function () {
             return
         }
 
-
-
-
-
-
         const ref = firebase.database().ref('SchoolCodes');
 
         ref.once('value', (data) => {
@@ -102,21 +97,17 @@ $(document).ready(function () {
                         var schoolIDref = firebase.storage().ref().child("AdminsToBeValidated/School_" + organizerID);
                         schoolIDref.put(selectedSchoolId).then(function (snapshot) {
                             console.log("Uploaded file successfully! :)");
-                            firebase.database().ref('Users/' + globalUser.uid).set({
-                                email: coin.email,
-                                password: coin.password,
-                                usertype: coin.usertype,
-                                email: coin.email,
+                            firebase.database().ref('Users/' + globalUser.uid).update({
                                 progress: 1
                             });
-                            update(globalUser);
                         })
 
                         var updates = {};
                         proposedSchoolObject["schoolCode"] = schoolCode;
                         proposedSchoolObject["schoolIndex"] = newIndex;
                         updates['/ProposedSchools/' + organizerID] = proposedSchoolObject;
-                        return firebase.database().ref().update(updates);
+                        firebase.database().ref().update(updates);
+                        window.location.replace("portal.html");
                     } catch (e) {
                         console.log("Error updating firebase with new school records :(")
                         console.log(e)
@@ -154,33 +145,21 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 function update(user) {
-    console.log(user);
     if (user) {
         globalUser = user;
-        firebase.database().ref('/Users/').once('value').then(function (snapshot) {
-            var keys2 = Object.keys(snapshot.val());
-            var usertype = "";
-            var j;
-            for (j = 0; j < keys2.length; j++) {
-                var q = snapshot.val();
-                if (keys2[j] == user.uid) {
-                    coin = q[keys2[j]];
-                    console.log(q[keys2[j]]);
-                    console.log(q[keys2[j]].email);
-                    usertype = (q[keys2[j]].usertype);
-                    break;
-                }
-            }
+        firebase.database().ref('/Users/'+globalUser.uid).once('value').then(function (snapshot) {
+            var usertype = (snapshot.val().usertype);
+            // var keys2 = Object.keys(snapshot.val());
             if (usertype != "principal") {
                 console.log(usertype);
                 window.location.replace("portal.html");
             }
             else {
-                console.log(q[keys2[j]].progress);
-                if (q[keys2[j]].progress == 0) {
+                console.log(snapshot.val().progress);
+                if (snapshot.val().progress == 0) {
 
                 }
-                else if (q[keys2[j]].progress == 1) {
+                else if (snapshot.val().progress == 1) {
                     document.getElementById("hide").style.display = "none";
                     document.getElementById("comment").innerHTML = "Being Verified";
                 }
