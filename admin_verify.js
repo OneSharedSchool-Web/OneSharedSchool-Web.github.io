@@ -148,8 +148,8 @@ function update()
                 location: json["location"],
                 name: json["name"],
                 organizerID: json["organizerID"],
-                raisedMoney: 0.0,
-                totalMoney: 0.0
+                raisedMoney: "0.0",
+                totalMoney: "0.0"
             }
 
             var updates = {}
