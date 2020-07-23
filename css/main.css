@@ -98,6 +98,10 @@ body {
   position: relative;
   background: url("../img/child4.jpg") no-repeat center;
   margin: 0px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: .95;
 }
 
 
@@ -108,6 +112,9 @@ body {
   vertical-align: middle;
   line-height: normal;
   color: #578edb;
+  //text-shadow: 4px 4px #d7eff5;
+  filter: blur(0px);
+  webkit-filter: blur(0px);
 }
 
 #hero-bg {
