@@ -65,7 +65,7 @@ function update()
             var otherVerificationInformation = content["otherVerificationInfo"];
             var driversLicense = "";
             var schoolID = "";
-
+			console.log("POO");
             // var splitDriver = content["selectedDriversLicense"].split(".")
             // var splitSchool = content["selectedSchoolId"].split(".")
 
@@ -73,8 +73,9 @@ function update()
             // const schoolIDExtension = splitSchool[splitSchool.length - 1]
 
             //console.log("filename search", current_key + driversLicenseExtension)
-
+			console.log(current_key);
             var driverRef = storageRef.ref('/AdminsToBeValidated/Drivers_' + current_key)
+			console.log(driverRef);	
             var schoolIdRef = storageRef.ref('/AdminsToBeValidated/School_' + current_key)
 
             driverRef.getDownloadURL().then(function (url) {

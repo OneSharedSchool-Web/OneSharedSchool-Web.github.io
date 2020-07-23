@@ -19,6 +19,10 @@ $(document).ready(function () {
         var otherVerificationInfo = $("#otherVerificationInfo").val();
         var latitude = $("#latitude").val();
         var longitude = $("#longitude").val();
+		
+		if(gofundmeLink.indexOf("www.") == -1)gofundmeLink = "www." + gofundmeLink;
+		if(gofundmeLink.indexOf("http://") == -1)gofundmeLink = "http://" + gofundmeLink;
+		console.log(gofundmeLink);
 
         var selectedDriversLicense = document.getElementById('driversLicense').files[0];
         var selectedSchoolId = document.getElementById("schoolIDcard").files[0];
@@ -107,7 +111,6 @@ $(document).ready(function () {
                         proposedSchoolObject["schoolIndex"] = newIndex;
                         updates['/ProposedSchools/' + organizerID] = proposedSchoolObject;
                         firebase.database().ref().update(updates);
-                        window.location.replace("portal.html");
                     } catch (e) {
                         console.log("Error updating firebase with new school records :(")
                         console.log(e)
