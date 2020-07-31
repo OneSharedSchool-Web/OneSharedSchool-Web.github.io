@@ -104,6 +104,7 @@ $(document).ready(function () {
                             firebase.database().ref('Users/' + globalUser.uid).update({
                                 progress: 1
                             });
+							update(globalUser);
                         })
 
                         var updates = {};
@@ -174,7 +175,7 @@ function update(user) {
         });
     }
     else {
-        window.location.replace("portal.html");
+        //window.location.replace("portal.html");
     }
 }
 
