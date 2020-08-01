@@ -56,16 +56,15 @@ function update()
             console.log(content)
 
             var schoolName = content["name"];
-            var adminFirstName = content["adminFirstName"];
-            var adminLastName = content["adminLastName"];
+            var adminName = content["adminName"];
+            var email = content["email"];
             var schoolDescription = content["description"];
             var schoolImageLink = content["imageUri"];
-            var driversLicense = content["adminFirstName"];
-            var schoolID = content["adminFirstName"];
+            var driversLicense = content["adminName"];
+            var schoolID = content["adminName"];
             var otherVerificationInformation = content["otherVerificationInfo"];
             var driversLicense = "";
             var schoolID = "";
-			console.log("POO");
             // var splitDriver = content["selectedDriversLicense"].split(".")
             // var splitSchool = content["selectedSchoolId"].split(".")
 
@@ -89,7 +88,7 @@ function update()
                     console.log("Download url for school ID is " + url)
                     schoolID = url;
 
-                    const card_to_inject = "<div class=\"shadow p-5\"><h4>" + schoolName + "</h4><div class=\"d-flex flex-row justify-content-center align-items-center p-3\"><div class=\"px-2\"><p>Admin:" + adminFirstName + " " + adminLastName + "</p><p>Description:" + schoolDescription + "</p><p>Items Needed: </p><ul><li>Hair</li><li>Clothing</li></ul></div><div class=\"px-2\"><img id=\"school_image\" src=\"" + schoolImageLink + "\"alt=\"School Image\"></div></div><h4>Admin Verification Information</h4><div class=\"d-flex flex-row justify-content-center align-items-center p-3\"><div class=\"p-3\"><h6>User Drivers License</h6><img id=\"drivers_license\" src=\"" + driversLicense + "\" alt=\"\"></div><div class=\"p-3\"><h6>School ID</h6><img id=\"school_id\"src=\"" + schoolID + "\"alt=\"\"></div></div><p>Other Verification Information:" + otherVerificationInformation + "</p><div class=\"d-flex flex-row justify-content-around align-items-center\" id=\"" + current_key + "\"><div class=\"mr-3\" id=\"check_div\"><p>approve</p><svg class=\"bi bi-check2\" width=\"5vw\" height=\"5vw\" viewBox=\"0 0 16 16\" fill=\"currentColor\"xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\"d=\"M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z\" /></svg></div><div id=\"reject_div\"><p>reject</p><svg class=\"bi bi-x\" width=\"5vw\" height=\"5vw\" viewBox=\"0 0 16 16\" fill=\"currentColor\"xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\"d=\"M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z\" /><path fill-rule=\"evenodd\"d=\"M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z\" /></svg></div></div></div>"
+                    const card_to_inject = "<div class=\"shadow p-5\"><h4>" + schoolName + "</h4><div class=\"d-flex flex-row justify-content-center align-items-center p-3\"><div class=\"px-2\"><p>Admin:" + adminName + "</p><p>Description:" + schoolDescription + "</p><p>Items Needed: </p><ul><li>Hair</li><li>Clothing</li></ul></div><div class=\"px-2\"><img id=\"school_image\" src=\"" + schoolImageLink + "\"alt=\"School Image\"></div></div><h4>Admin Verification Information</h4><div class=\"d-flex flex-row justify-content-center align-items-center p-3\"><div class=\"p-3\"><h6>User Drivers License</h6><img id=\"drivers_license\" src=\"" + driversLicense + "\" alt=\"\"></div><div class=\"p-3\"><h6>School ID</h6><img id=\"school_id\"src=\"" + schoolID + "\"alt=\"\"></div></div><p>Other Verification Information:" + " Email of admin: " + email + "<br>" + otherVerificationInformation + "</p><div class=\"d-flex flex-row justify-content-around align-items-center\" id=\"" + current_key + "\"><div class=\"mr-3\" id=\"check_div\"><p>approve</p><svg class=\"bi bi-check2\" width=\"5vw\" height=\"5vw\" viewBox=\"0 0 16 16\" fill=\"currentColor\"xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\"d=\"M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z\" /></svg></div><div id=\"reject_div\"><p>reject</p><svg class=\"bi bi-x\" width=\"5vw\" height=\"5vw\" viewBox=\"0 0 16 16\" fill=\"currentColor\"xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\"d=\"M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z\" /><path fill-rule=\"evenodd\"d=\"M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z\" /></svg></div></div></div>"
 
                     $("#proposed_school_list").append(card_to_inject)
 
@@ -98,7 +97,6 @@ function update()
                         var userID = $(this).parent().attr('id');
                         console.log(userID)
                         acceptSchool(userID)
-
                         $("#" + userID).parent().parent().remove();
                     });
                     $("#reject_div").on("click", function () {
@@ -114,7 +112,7 @@ function update()
     }, null)
 
     function rejectSchool(UID) {
-        const ref = firebase.database().ref('SchoolCodes/' + UID);
+        const ref = firebase.database().ref('ProposedSchools/' + UID);
         ref.remove();
         return;
     }
@@ -127,50 +125,56 @@ function update()
             console.log("accept school function")
             console.log(json);
             
-            // adminFirstName: "sreehari"
-            // adminLastName: "rammohan"
-            // description: "sdlfkkj"
-            // imageUri: "https://www.brown.edu/sites/g/files/dprerj316/files/styles/wide_sml/public/2020-04/PembrokeCampus_0.jpg"
-            // items: ["sdkjf"]
-            // name: "Cupertino High School"
-            // organizerID: "YSVLzdUwIuSkYFXS7YokVtURTI83"
-            // otherVerificationInfo: "sdfsdf"
-            // schoolCode: 3116723917
-            // schoolIndex: 6
-            // selectedDriversLicense: "20190825-_DSF8733.JPG"
-            // selectedSchoolId: "20190825-_DSF8733.JPG"
+            firebase.database().ref("Schools").once("value", (data) => {
+                var sortedKeys = Object.keys(data.val()).sort();
 
-            let objectToPush = {
-                description: json["description"],
-                fundLink: json["fundLink"],
-                id: json["schoolIndex"] + "",
-                imageUri: json["imageUri"],
-                items: json["items"],
-                location: json["location"],
-                name: json["name"],
-                organizerID: json["organizerID"],
-                raisedMoney: "0.0",
-                totalMoney: "0.0"
-            }
+                var newIndex = 1;
 
-            var updates = {}
-            updates["/Schools/" + json["schoolIndex"]] = objectToPush;
-            firebase.database().ref().update(updates);
+                if (sortedKeys.length != 0) {
+                    newIndex = parseInt(sortedKeys[sortedKeys.length - 1]) + 1;
+                }
 
-			var result = geocodeLatLng(json["location"], json);
-						
+                console.log("New school will be inserted here", newIndex)
 
-			
-			  
-			var postKey = json["schoolCode"];
-			var updates = {};
-			var postData = json["schoolIndex"];
-			updates['/SchoolCodes/' + postKey] = postData;
-			firebase.database().ref().update(updates);
-			
-			
-            ref.remove();
-            return;
+                let objectToPush = {
+                    description: json["description"],
+                    fundLink: json["fundLink"],
+                    id: newIndex + "",
+                    imageUri: json["imageUri"],
+                    items: json["items"],
+                    location: json["location"],
+                    name: json["name"],
+                    organizerID: json["organizerID"],
+                    raisedMoney: "0.0",
+                    totalMoney: "0.0"
+                }
+                
+                var updates = {}
+                updates[newIndex] = objectToPush;
+                firebase.database().ref("/Schools/").update(updates);
+    
+                // var result = {
+                //     location: ,
+                //     school: newIndex+"",
+                //     progress: 2
+                // }
+                geocodeLatLng(json["location"], json)
+                // firebase.database().ref("/Users/"+json["organizerID"]).update(result);
+                // firebase.database().ref("/Users/"+json["organizerID"]+"/school").update(newIndex+"");
+                // firebase.database().ref("/Users/"+json["organizerID"]+"/progress").update(2);
+
+                var postKey = json["schoolCode"];
+                var updates = {};
+                updates[postKey] = newIndex;
+                firebase.database().ref("/SchoolCodes/").update(updates);
+                
+                
+                // ref.remove();
+                rejectSchool(UID)
+                return;
+            }, null)
+
+            
         })
     }
 }

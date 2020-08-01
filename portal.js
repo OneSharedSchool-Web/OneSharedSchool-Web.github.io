@@ -49,14 +49,21 @@ function telephoneCheck(str) {
 	var a = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/.test(str);
 	return a
 }
+function checkURL(url) {
+    return(url.match(/\.(jpeg|jpg|png)$/) != null);
+}
 function isValidHttpUrl(string) {
 	let url;
   
 	try {
 	  url = new URL(string);
+	//   if(!checkURL(url)){
+	// 	return false
+	//   }
 	} catch (_) {
 	  return false;  
 	}
+	
   
 	return url.protocol === "http:" || url.protocol === "https:";
   }
@@ -117,7 +124,7 @@ function submit() {
 			return;
 		}
 		if(!isValidHttpUrl(pfpurl)){
-			alert("URL must contain a http or https at the beginning.")
+			alert("URL must contain a http or https at the beginning. It also must be an image (png, jpg, or jpeg).")
 			return;
 		}
 		if(usertype=="student"){
@@ -138,7 +145,7 @@ function submit() {
 						
 						
 					});
-
+					signUp(email, password);
 					// signUp(email, password);
 					// console.log("MINE");
 					// code = obj;

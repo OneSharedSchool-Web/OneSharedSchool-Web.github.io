@@ -13,26 +13,19 @@ function update()
 	{
 		once = true;
 		firebase.database().ref('Users/' + globalUser.uid).once("value", (data) => {
-			var json = data.val().listOfCodes;
-			var arter = data.val();
-			for(var i = 0; i < json.length; i++)
-			{
-				var elem = document.createElement('div');
-				elem.className = "indCode"
-				elem.innerHTML = json[i];
-				elem.onclick = function(eventClick)
-				{
-					console.log(eventClick.target.innerHTML);
-					firebase.database().ref('Users/' + globalUser.uid).update({
-						schoolCode: eventClick.target.innerHTML
-					});
-					schoolCode = eventClick.target.innerHTML;
-					document.getElementById("codes").style.display = "none";
-					update();
-				};
-				var codes = document.getElementById("codes");
-				codes.appendChild(elem);
-			}
+			var schoolId = data.val().school;
+			firebase.database().ref('SchoolCodes/').once("value", (snapshot) => {
+				var codes = snapshot.val()
+				console.log(codes)
+				for (var code in codes) {
+					console.log(schoolId + ", " + code)
+					if((""+codes[code]) == schoolId){
+						schoolCode = ""+code
+						document.getElementById("schoolCode").innerHTML = "School Code: " + schoolCode;
+					} 
+				}
+				
+			});
 		});
 	}
 	
@@ -77,7 +70,7 @@ function showCodes()
 
 function gotData(data)
 {
-	console.log(data.val() + "poopoopeepee");
+	console.log(data.val());
 	const myNode = document.getElementById("comments");
 	while (myNode.firstChild) 
 	{
@@ -164,24 +157,25 @@ firebase.auth().onAuthStateChanged(function(user)
 {
   if (user)
   {
-    globalUser = user;
+	globalUser = user;
 	firebase.database().ref('Users/' + user.uid).once("value", (data) => 
 	{
 		progress = data.val().progress;
 		usertype = data.val().usertype;
-		schoolCode = data.val().schoolCode;
-		console.log(schoolCode);
+		// schoolCode = data.val().schoolCode;
+		// console.log(schoolCode);
 		if(usertype == "principal" && progress != 2)window.location.replace("portal.html");
 		else if(usertype == "principal" && progress == 2)
 		{
-			console.log("HIPOO");
+			update();
 			document.getElementById("schoolCode").innerHTML = "School Code: " + schoolCode;
 			document.getElementById("addASchool").style.display = "none";
 		}
 		else{
-			document.getElementById("addASchool").style.display = "flex";
+			update();
+			document.getElementById("addASchool").style.display = "none";
 		}
-		update();
+		
 	});
   } 
   else {
