@@ -4,30 +4,52 @@ var email;
 var usertype = "";
 var progress = 0;
 var schoolCode;
-var once = false;
+var listOfNums = [];
 function update()
 {
 	console.log(schoolCode);
 	console.log(usertype);
-	if(once == false)
-	{
-		once = true;
 		firebase.database().ref('Users/' + globalUser.uid).once("value", (data) => {
 			var schoolId = data.val().school;
 			firebase.database().ref('SchoolCodes/').once("value", (snapshot) => {
 				var codes = snapshot.val()
 				console.log(codes)
 				for (var code in codes) {
-					console.log(schoolId + ", " + code)
-					if((""+codes[code]) == schoolId){
-						schoolCode = ""+code
-						document.getElementById("schoolCode").innerHTML = "School Code: " + schoolCode;
-					} 
+					console.log(schoolId + ", " + code);
+					listOfNums.push(snapshot.val()[code]);
+					//firebase.database().ref('Schools/' + snapshot.val()[code]).once("value", (arter) =>{
+					//	arter.val().name;
+					//});
+					var elem = document.createElement("DIV");
+					elem.title = code;
+					elem.id = "schoolCode";
+					elem.onclick = function(e)
+					{
+						console.log(e);
+						let obj = e.path[0].title;
+						console.log(obj);
+						schoolCode = obj;
+						firebase.database().ref('Users/' + globalUser.uid).update({
+							schoolCode: schoolCode
+						});
+
+						var ref = firebase.database().ref('Posts/' + schoolCode);
+						ref.on('value', gotData	,errData);
+
+					};
+					document.getElementById("codes").appendChild(elem);
 				}
-				
+				console.log(listOfNums);
+				for(let i = 0; i < listOfNums.length; i++)
+				{
+					
+					firebase.database().ref('Schools/' + listOfNums[i]).once("value", (arter) =>{
+						console.log(arter.val().name);
+						document.getElementById("codes").childNodes[i + 1].innerHTML = arter.val().name;
+					});
+				}
 			});
 		});
-	}
 	
 	var ref = firebase.database().ref('Posts/' + schoolCode);
 	ref.on('value', gotData	,errData);
@@ -40,12 +62,18 @@ function addSchool()
 	console.log(obj);
 	console.log(firebase.database().ref('SchoolCodes'));
 	if(obj == "")return;
+	else console.log("HE");
 	firebase.database().ref('SchoolCodes/' + obj).once("value", (data) => {
 		var arter = data.val();
 		if (arter != undefined)
 		{
 			firebase.database().ref('Users/' + globalUser.uid).once("value", (data) => {
 				var list = data.val().listOfCodes
+				if(list == undefined)
+				{
+					list = [];
+
+				}
 				console.log(list);
 				if(list.indexOf(obj) == -1)list.push(obj);
 				firebase.database().ref('Users/' + globalUser.uid).update({
@@ -65,7 +93,8 @@ function addSchool()
 
 function showCodes()
 {
-	document.getElementById("codes").style.display = "flex";
+	document.getElementById("block").style.display = "flex";
+	update();
 }
 
 function gotData(data)
@@ -78,7 +107,7 @@ function gotData(data)
 	}
 	
 	var articleObj = data.val();
-	
+	console.log(articleObj);
 	if(articleObj != null)
 	{
 		var keys = Object.keys(articleObj);
@@ -162,6 +191,7 @@ firebase.auth().onAuthStateChanged(function(user)
 	{
 		progress = data.val().progress;
 		usertype = data.val().usertype;
+		console.log(usertype);
 		// schoolCode = data.val().schoolCode;
 		// console.log(schoolCode);
 		if(usertype == "principal" && progress != 2)window.location.replace("portal.html");
@@ -173,7 +203,7 @@ firebase.auth().onAuthStateChanged(function(user)
 		}
 		else{
 			update();
-			document.getElementById("addASchool").style.display = "none";
+			document.getElementById("schoolCode").style.display = "none";
 		}
 		
 	});

@@ -9,11 +9,14 @@ var code;
 var name;
 var phone;
 var bio;
-var pfpurl;
+var pfp;
 var location2;
 var school;
+var first = false;
+var downloadURL;
+var xr = 20000;
 
-window.onload = logout();
+window.onload = logout();	
 
 function portalTypeLogin() {
 	document.getElementById("usertype").style.display = "none";
@@ -47,7 +50,10 @@ function student() {
 }
 function telephoneCheck(str) {
 	var a = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/.test(str);
-	return a
+	var b = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(str);
+	var c = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/.test(str);
+	console.log(b);
+	return a || b || c;
 }
 function checkURL(url) {
     return(url.match(/\.(jpeg|jpg|png)$/) != null);
@@ -68,6 +74,7 @@ function isValidHttpUrl(string) {
 	return url.protocol === "http:" || url.protocol === "https:";
   }
 function submit() {
+	logout();
 	// console.log(usertype + " " + portalType);
 	email = document.getElementById("email").value;
 	password = document.getElementById("password").value;
@@ -75,11 +82,13 @@ function submit() {
 	name = document.getElementById("name").value;
 	phone = document.getElementById("phone").value;
 	bio = document.getElementById("bio").value;
-	pfpurl = document.getElementById("pfpurl").value;
 	school = "-1";
 	location2 = "-1";
-	// location2 = document.getElementById("location").value;
-	// school = document.getElementById("school").value;
+	if(portalType == "signUp"){
+		pfp = document.getElementById('pfp').files[0];
+		pfp = new File([pfp], name + "_pfp", {type: pfp.type});
+	}
+	console.log(pfp);
 
 
 	if (portalType == "login") {
@@ -123,10 +132,6 @@ function submit() {
 			alert("Phone number not formatted properly! Hover over the box for an example.")
 			return;
 		}
-		if(!isValidHttpUrl(pfpurl)){
-			alert("URL must contain a http or https at the beginning. It also must be an image (png, jpg, or jpeg).")
-			return;
-		}
 		if(usertype=="student"){
 			var isValid = false;
 			var obj = document.getElementById("schoolCode").value;
@@ -162,6 +167,12 @@ function submit() {
 }
 
 firebase.auth().onAuthStateChanged(function (user) {
+
+	if(!first)
+	{
+		logout();
+		first = true;
+	}
 	if (user) {
 		console.log(user);
 		document.getElementById("loading").style.display = "flex";
@@ -170,10 +181,10 @@ firebase.auth().onAuthStateChanged(function (user) {
 		{
 			addUser()
 			if (usertype == "student") {
-				setTimeout(relocateDash, 2000);
+				setTimeout(relocateDash, xr);
 			}
 			else if (usertype == "principal") {
-				setTimeout(relocateAdd, 2000);
+				setTimeout(relocateAdd, xr);
 			}
 		}
 		else if (portalType == "login") {
@@ -204,7 +215,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 		}
 	}
 	else {
-
+		logout();
 	}
 });
 
@@ -224,11 +235,12 @@ function addUser() {
 			location: location2,
 			phone: phone,
 			school: school,
-			pfpUrl: pfpurl
+			pfp: pfp.name
 		}
 		
 		updates['/Users/' + postKey] = postData;
 		firebase.database().ref().update(updates);
+		
 	}
 	else {
 		console.log("MyMAN");
@@ -246,11 +258,38 @@ function addUser() {
 			location: "-1",
 			phone: phone,
 			school: "-1",
-			pfpUrl: pfpurl
+			pfp: pfp.name
 		}
 
 		updates['/Users/' + postKey] = postData;
 		firebase.database().ref().update(updates);
+	}
+	try
+	{
+		console.log("Selected file", pfp.name)
+
+		var driverRef = firebase.storage().ref().child("Users/" + currentUser.uid);
+		var uploadTask = driverRef.put(pfp);
+		uploadTask.on('state_changed', function(snapshot)
+		{
+
+		}, function(error){console.log(error)},
+		function(){
+			uploadTask.snapshot.ref.getDownloadURL().then(
+				function(downloadURL)
+				{
+					console.log(downloadURL);
+					firebase.database().ref('Users/' + currentUser.uid).update({
+						pfp: downloadURL
+					});
+				}
+			)
+		});
+
+	} catch (e)
+	{
+		console.log("Error updating firebase with new school records :(")
+		console.log(e)
 	}
 }
 
@@ -267,7 +306,7 @@ function relocateVer() {
 }
 function logout() {
 	firebase.auth().signOut().then(function () {
-		// Sign-out successful.
+		//Sign-out successful.
 	}).catch(function (error) {
 		// An error happened.
 	});
@@ -282,10 +321,10 @@ function signUp(email, password) {
 			{
 				addUser()
 				if (usertype == "student") {
-					setTimeout(relocateDash, 2000);
+					setTimeout(relocateDash, xr);
 				}
 				else if (usertype == "principal") {
-					setTimeout(relocateAdd, 2000);
+					setTimeout(relocateAdd, xr);
 				}
 			}
 			else if (portalType == "login") {
@@ -317,13 +356,6 @@ function signUp(email, password) {
 		else {
 	
 		}
-	}).catch(function (error) {
-		// Handle Errors here.
-		var errorCode = error.code;
-		var errorMessage = error.message;
-		document.getElementById("errorMessage").innerHTML = errorMessage;
-		alert("Error while signing up!")
-		// ...
 	});
 }
 
